@@ -76,25 +76,8 @@ public class DBManager : MonoBehaviour
     public void CreateUser(string _userID)
     {
         User user = new User();
-        mRef.Child("users").Child(_userID).Child("score").SetValueAsync(user.GetUserScore());
-        mRef.Child("users").Child(_userID).Child("name").SetValueAsync(user.GetUserName());
-        // mRef.Child("users").Child(_userID).Child("rank").SetValueAsync(user.GetUserRank());
-        mRef.Child("users").Child(_userID).Child("best_score").SetValueAsync(user.GetUserBestScore());
-        mRef.Child("users").Child(_userID).Child("create_at").SetValueAsync(user.user_createAt);
-        mRef.Child("users").Child(_userID).Child("update_at").SetValueAsync(user.user_updateTime);
+        mRef.Child("users").Child(_userID).SetValueAsync(user.ToDictionary());
     }
-
-    // 지울 함수
-    public void PushUserInfo(string _name, int _score)
-    {
-        User user  = new User();
-        // Push를 이용하면, _userID로 적용했던 부분이 임의의 키로 설정되고, 이를 반환해줌
-        string key = mRef.Child("users").Push().Key;
-        mRef.Child("users").Child(key).Child("name").SetValueAsync(_name);
-        // mRef.Child("users").Child(key).Child("rank").SetValueAsync(user.GetUserRank());
-        mRef.Child("users").Child(key).Child("best_score").SetValueAsync(_score);
-    }
-    
     public void UpdateUser()
     {
         string _userID = mUser.UserId;
@@ -102,22 +85,6 @@ public class DBManager : MonoBehaviour
         user.SetUserName(SceneData._instance.username);
         user.SetUserScore(GameManager._instance.nScore);
         user.SetUserBestScore(GameManager._instance.nMaxScore);
-        mRef.Child("users").Child(_userID).UpdateChildrenAsync(user.ToDictionary());
+        mRef.Child("users").Child(_userID).UpdateChildrenAsync(user.UpdateToDictionary());
     }
-
-    // 읽기
-    // public void ReadUserInfos()
-    // {
-    //     mRef.Child("users").GetValueAsync().ContinueWithOnMainThread(task =>
-    //         {
-    //             if (task.IsCompleted) {
-    //                 DataSnapshot snapshot = task.Result;
-    //                 foreach (DataSnapshot data in snapshot.Children) {
-    //                     IDictionary userInfo = (IDictionary)data.Value;
-    //                     Debug.Log("Name: " + userInfo["name"] + " / Score: " + userInfo["best_score"] + " / ");
-    //                 }
-    //             }
-    //         }
-    //     );
-    // }
 }

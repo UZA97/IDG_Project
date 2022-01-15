@@ -15,6 +15,8 @@ public class User : MonoBehaviour
     public int GetUserScore() {return user_score;}
     public int GetUserRank() {return user_rank;}
     public int GetUserBestScore() {return user_bestScore;}
+    public DateTime GetUserCreateAt(){return user_createAt;}
+    public DateTime GetUserUpdateTime(){return user_updateTime;}
     public void SetUserName(string name) {this.user_name = name;}
     public void SetUserScore(int score) {this.user_score = score;}
     public void SetUserRank(int rank){this.user_rank = rank;}
@@ -42,6 +44,14 @@ public class User : MonoBehaviour
         dic["rank"] = this.user_rank;
         dic["best_score"] = this.user_bestScore;
         dic["create_time"] = Convert.ToString(this.user_createAt);
+        dic["update_time"] = Convert.ToString(this.user_updateTime);
+        return dic;
+    }
+    public Dictionary<string, object> UpdateToDictionary()
+    {
+        Dictionary<string, object> dic = new Dictionary<string, object>();
+        dic["score"] = this.user_score;
+        dic["best_score"] = this.user_bestScore;
         dic["update_time"] = Convert.ToString(this.user_updateTime);
         return dic;
     }
