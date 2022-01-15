@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 163be33bb3b35974594be7e182d656de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SquidPrefabs: {fileID: 215582127641089807, guid: 4a0e43053086e2a47b6cbd29a70ecf1f,
+      type: 3}
+  - CreatePos: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
