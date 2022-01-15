@@ -14,7 +14,7 @@ public class Button : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteKey("UserName");
+        //PlayerPrefs.DeleteKey("UserName");
         if(!PlayerPrefs.HasKey("UserName")) {
             print("AS");    // "최초 아이디를 입력해 주세요" 토스트메시지 작성 
         }
