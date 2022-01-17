@@ -45,31 +45,29 @@ public class DBManager : MonoBehaviour
     }
     public void IsVaildName(string name) 
     {
-        mRef.Child("users").OrderByChild("name").EqualTo(name).GetValueAsync().ContinueWith(
-            task => 
-            {
-                if(task.IsFaulted) {
-                    mIsVaildName = false;
+        mRef.Child("users").OrderByChild("name").EqualTo(name).GetValueAsync().ContinueWith(task => 
+        {
+            if(task.IsFaulted) {
+                mIsVaildName = false;
+                return;
+            }
+            else if (task.IsCompleted) {
+                DataSnapshot snapshot = task.Result;
+                foreach (DataSnapshot data in snapshot.Children) {
+                    IDictionary user = (IDictionary)data.Value;
+                    if(mUser.UserId == data.Reference.Key) {
+                        Debug.Log((user["name"].ToString()));   // 나중에 지우기
+                        mIsVaildName = true;
+                    }
+                    if(name == (string)user["name"] && mUser.UserId != data.Reference.Key) {
+                        mIsVaildName = false;
+                        // 토스트메시지 형식으로 사용자에게 ("같은 이름이 있거나 비어있어요!!.")메시지 구현 필요
+                    }
                     return;
                 }
-                else if (task.IsCompleted) {
-                    DataSnapshot snapshot = task.Result;
-                    foreach (DataSnapshot data in snapshot.Children) {
-                        IDictionary user = (IDictionary)data.Value;
-                        if(mUser.UserId == data.Reference.Key) {
-                            Debug.Log((user["name"].ToString()));   // 나중에 지우기
-                            mIsVaildName = true;
-                        }
-                        if(name == (string)user["name"] && mUser.UserId != data.Reference.Key) {
-                            mIsVaildName = false;
-                            // 토스트메시지 형식으로 사용자에게 ("같은 이름이 있거나 비어있어요!!.")메시지 구현 필요
-                        }
-                        return;
-                    }
-                }
-                mIsVaildName = true;
             }
-        );
+            mIsVaildName = true;
+        });
     }
 
     // User통으로 넘기기

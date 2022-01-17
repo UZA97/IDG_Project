@@ -10,7 +10,7 @@ public class Button : MonoBehaviour
     private GameObject RankGroup;
     [SerializeField]
     private GameObject OptionGroup;
-    private string userName;
+    private string m_UserName;
 
     private void Start()
     {
@@ -19,8 +19,8 @@ public class Button : MonoBehaviour
             print("AS");    // "최초 아이디를 입력해 주세요" 토스트메시지 작성 
         }
         else {
-            userName = PlayerPrefs.GetString("UserName");
-            SceneData._instance.username = userName;
+            m_UserName = PlayerPrefs.GetString("UserName");
+            SceneData._instance.username = m_UserName;
             if(SceneManager.GetActiveScene().name == "InputName"){
                 SceneManager.LoadScene("Login");
                 Destroy(SceneData._instance.gameObject);
