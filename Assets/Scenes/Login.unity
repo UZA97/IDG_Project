@@ -4221,7 +4221,6 @@ MonoBehaviour:
   Input_UserName: {fileID: 0}
   RankGroup: {fileID: 1120840336}
   OptionGroup: {fileID: 0}
-  UserNameText: {fileID: 1921330604}
 --- !u!4 &967499833
 Transform:
   m_ObjectHideFlags: 0
@@ -5122,7 +5121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ff307d189bbf14c882e6ddafb7f13f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rankText:
+  m_RankText:
   - {fileID: 1306419901}
   - {fileID: 1956901809}
   - {fileID: 1434103135}
@@ -5223,7 +5222,7 @@ MonoBehaviour:
   - {fileID: 1175009767}
   - {fileID: 1547298114}
   - {fileID: 476694182}
-  userRankText: {fileID: 931559066}
+  m_UserRankText: {fileID: 931559066}
 --- !u!114 &1120840339
 MonoBehaviour:
   m_ObjectHideFlags: 0
