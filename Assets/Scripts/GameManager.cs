@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     private ParticleSystem correctEffect;
     public GameObject EffectPrefab;
 
-    [Header("Auido")]
-    public AudioSource AuidoBackground;
-
     [Header("UI")]
     public Text tScore;
     public Text tMaxScore;

@@ -10,38 +10,25 @@ public class Button : MonoBehaviour
     private GameObject RankGroup;
     [SerializeField]
     private GameObject OptionGroup;
-    private string m_UserName;
-
-    private void Start()
-    {
-        //PlayerPrefs.DeleteKey("UserName");
-        if(!PlayerPrefs.HasKey("UserName")) {
-            print("AS");    // "최초 아이디를 입력해 주세요" 토스트메시지 작성 
-        }
-        else {
-            m_UserName = PlayerPrefs.GetString("UserName");
-            SceneData._instance.username = m_UserName;
-            if(SceneManager.GetActiveScene().name == "InputName"){
-                SceneManager.LoadScene("Login");
-                Destroy(SceneData._instance.gameObject);
-            }
-            else
-                return;
-        }
-    }
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource S_BtnClick;
 
     public void GameStart()
     {
+        S_BtnClick.Play();
         SceneManager.LoadScene("Main");
     }
     public void Restart()
     {
+        S_BtnClick.Play();
         SceneManager.LoadScene("Main");
         GameManager._instance.IsOver = false;
     }
 
     public void InputUserName()
     {
+        S_BtnClick.Play();
         DBManager._instance.IsVaildName(Input_UserName.text);
         if(Input_UserName.text == "") {
             Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
@@ -55,32 +42,38 @@ public class Button : MonoBehaviour
     }
     public void ShowOption()
     {
+        S_BtnClick.Play();
         GameManager._instance.IsPause = true;
         GameManager._instance.ChickGroup.SetActive(false);
         OptionGroup.SetActive(true);
     }
     public void GameToMain()
     {
+        S_BtnClick.Play();
         SceneManager.LoadScene("Login");
         Destroy(SceneData._instance.gameObject);
     }
     public void Exit()
     {
+        S_BtnClick.Play();
         GameManager._instance.IsPause = false;
         GameManager._instance.ChickGroup.SetActive(true);
         OptionGroup.SetActive(false);
     }
     public void EndGame()
     {
+        S_BtnClick.Play();
         Application.Quit();
     }
 
     public void ShowRank()
     {
         RankGroup.SetActive(true);
+        S_BtnClick.Play();
     }
     public void RanktoMain()
     {
         RankGroup.SetActive(false);
+        S_BtnClick.Play();
     }
 }

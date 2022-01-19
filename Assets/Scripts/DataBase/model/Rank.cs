@@ -30,7 +30,6 @@ public class Rank : MonoBehaviour
     
     void LoadData()
     {
-        User user = new User();
         reference.Child("users").OrderByChild("best_score").LimitToLast(100).GetValueAsync().ContinueWith(task =>
         {            
             if(task.IsFaulted) {
@@ -46,17 +45,25 @@ public class Rank : MonoBehaviour
                     count++;
                 }
                 m_UserRankList.Reverse();
+
                 m_TextLoadBool = true;
             }
         });
     }
-    void LoadText()
+    private void LoadText()
     {
+        User user = new User();
         m_TextLoadBool = false;
-        for(int i = 0; i<m_UserRankList.Count; i++) {
-            m_RankText[i].text = (i+1) +"등 "+ m_UserRankList[i];
+        string[] arr = new string[]{"1등 ", "2등 " , "3등 "};
+        for(int i = 3; i<m_UserRankList.Count; i++) {
+            //m_RankText[i].text = (i+1) +"등 "+ m_UserRankList[i];
+            for(int j = 0; j< 3; j++){
+                m_RankText[j].text = arr[j]+ m_UserRankList[j];
+            }
+            m_RankText[i].text = m_UserRankList[i];
         }
     }
+
     public void UserRankInfo()
     {
         m_UserRankText.text = "현재 나의 최고 점수\n" + SceneData._instance.username + " : " + PlayerPrefs.GetInt("MaxScore").ToString();
