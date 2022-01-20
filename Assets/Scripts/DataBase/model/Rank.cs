@@ -54,13 +54,9 @@ public class Rank : MonoBehaviour
     {
         User user = new User();
         m_TextLoadBool = false;
-        string[] arr = new string[]{"1등 ", "2등 " , "3등 "};
-        for(int i = 3; i<m_UserRankList.Count; i++) {
+        for(int i = 0; i<3; i++) {
             //m_RankText[i].text = (i+1) +"등 "+ m_UserRankList[i];
-            for(int j = 0; j< 3; j++){
-                m_RankText[j].text = arr[j]+ m_UserRankList[j];
-            }
-            m_RankText[i].text = m_UserRankList[i];
+            m_RankText[i].text = (i+1) +"등 "+m_UserRankList[i];
         }
     }
 
