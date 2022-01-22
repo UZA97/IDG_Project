@@ -10,28 +10,32 @@ public class Button : MonoBehaviour
     private GameObject RankGroup;
     [SerializeField]
     private GameObject OptionGroup;
-    [Header("Audio")]
     [SerializeField]
-    private AudioSource S_BtnClick;
+    private Text Notificationtext;
 
     public void GameStart()
     {
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("Main");
     }
     public void Restart()
     {
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("Main");
         GameManager._instance.IsOver = false;
     }
 
     public void InputUserName()
     {
-        S_BtnClick.Play();
-        DBManager._instance.IsVaildName(Input_UserName.text);
+        SoundManager._instance.S_BtnClick.Play();
         if(Input_UserName.text == "") {
-            Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
+            // Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
+            Notificationtext.text = "이름이 비어있어요!!";
+            return;
+        }
+        if(!DBManager._instance.mIsVaildName){
+            // Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
+            Notificationtext.text = "같은 이름이 있어요!!";
             return;
         }
         else if(DBManager._instance.mIsVaildName){
@@ -40,40 +44,54 @@ public class Button : MonoBehaviour
             SceneManager.LoadScene("Login");
         }
     }
+    public void CheckUserName(string name)
+    {
+        DBManager._instance.IsVaildName(name);
+    }
     public void ShowOption()
     {
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
+        OptionGroup.SetActive(true);
+    }
+    public void ExitOption()
+    {
+        SoundManager._instance.S_BtnClick.Play();
+        OptionGroup.SetActive(false);
+    }
+    public void InGameShowOption()
+    {
+        S2_SoundManager._instance.S_BtnClick.Play();
         GameManager._instance.IsPause = true;
         GameManager._instance.ChickGroup.SetActive(false);
         OptionGroup.SetActive(true);
     }
     public void GameToMain()
     {
-        S_BtnClick.Play();
+        S2_SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("Login");
         Destroy(SceneData._instance.gameObject);
     }
-    public void Exit()
+    public void InGameExitOption()
     {
-        S_BtnClick.Play();
+        S2_SoundManager._instance.S_BtnClick.Play();
         GameManager._instance.IsPause = false;
         GameManager._instance.ChickGroup.SetActive(true);
         OptionGroup.SetActive(false);
     }
     public void EndGame()
     {
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
         Application.Quit();
     }
 
     public void ShowRank()
     {
         RankGroup.SetActive(true);
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
     }
     public void RanktoMain()
     {
         RankGroup.SetActive(false);
-        S_BtnClick.Play();
+        SoundManager._instance.S_BtnClick.Play();
     }
 }
