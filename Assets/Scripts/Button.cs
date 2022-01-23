@@ -16,12 +16,12 @@ public class Button : MonoBehaviour
     public void GameStart()
     {
         SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Game");
     }
     public void Restart()
     {
-        SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Main");
+        S2_SoundManager._instance.S_BtnClick.Play();
+        SceneManager.LoadScene("Game");
         GameManager._instance.IsOver = false;
     }
 
@@ -29,19 +29,17 @@ public class Button : MonoBehaviour
     {
         SoundManager._instance.S_BtnClick.Play();
         if(Input_UserName.text == "") {
-            // Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
             Notificationtext.text = "이름이 비어있어요!!";
             return;
         }
         if(!DBManager._instance.mIsVaildName){
-            // Debug.Log("같은 이름이 있거나 비어있어요!!");   // 토스트 메시지
             Notificationtext.text = "같은 이름이 있어요!!";
             return;
         }
         else if(DBManager._instance.mIsVaildName){
             PlayerPrefs.SetString("UserName", Input_UserName.text);
             SceneData._instance.username = PlayerPrefs.GetString("UserName");
-            SceneManager.LoadScene("Login");
+            SceneManager.LoadScene("Main");
         }
     }
     public void CheckUserName(string name)
@@ -68,8 +66,8 @@ public class Button : MonoBehaviour
     public void GameToMain()
     {
         S2_SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Login");
-        Destroy(SceneData._instance.gameObject);
+        SceneManager.LoadScene("Main");
+        SceneData._instance.S_BGM.Play();
     }
     public void InGameExitOption()
     {

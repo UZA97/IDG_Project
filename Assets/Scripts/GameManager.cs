@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
             NextChickObj.SetActive(false);
             GameOver();
         }
-        Invoke("Pause", 1.0f);
+        Invoke("Pause", 0.5f);
     }
     private void Pause()
     {
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
-        // Over Effect
+        S2_SoundManager._instance.S_GameOver.Play();
         IsOver = true;
         endGroup.SetActive(true);
         tsubScore.text = "Score : " + tScore.text;
@@ -145,10 +145,14 @@ public class GameManager : MonoBehaviour
             return;
         if (!IsPause)
         {
-            if (chick.ChickName == "A")
+            if (chick.ChickName == "A") {
+                S2_SoundManager._instance.S_Chick.Play();
                 DestroyChick();
-            else
+            }
+            else {
+                S2_SoundManager._instance.S_Fail.Play();
                 Wrong();
+            }
         }
     }
     public void PushButtonB()
@@ -157,10 +161,14 @@ public class GameManager : MonoBehaviour
             return;
         if (!IsPause)
         {
-            if (chick.ChickName == "B")
+            if (chick.ChickName == "B") {
+                S2_SoundManager._instance.S_Chick.Play();
                 DestroyChick();
-            else
+            }
+            else {
+                S2_SoundManager._instance.S_Fail.Play();
                 Wrong();
+            }
         }
     }
     public void PushButtonC()
@@ -169,10 +177,14 @@ public class GameManager : MonoBehaviour
             return;
         if (!IsPause)
         {
-            if (chick.ChickName == "C")
+            if (chick.ChickName == "C") {
+                S2_SoundManager._instance.S_Chick.Play();
                 DestroyChick();
-            else
+            }
+            else {
+                S2_SoundManager._instance.S_Fail.Play();
                 Wrong();
+            }
         }
     }
 }

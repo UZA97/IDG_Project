@@ -5,21 +5,25 @@ using UnityEngine.SceneManagement;
 public class SceneData : MonoBehaviour
 {
     public static SceneData _instance;
+    public AudioSource S_BGM;
     public string username;
-    public float S_BGMVolume;
-    public float S_BtnClickVolume;
     private void Awake()
     {
         Application.targetFrameRate = 60;   // 프레임   60고정
         if(_instance == null) {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
-            Destroy(gameObject);
-        S_BGMVolume = PlayerPrefs.GetFloat("S_BGM");
-        S_BtnClickVolume = PlayerPrefs.GetFloat("S_BtnClick");
-        
+        DontDestroyOnLoad(gameObject);
+    }
+    void Update()
+    {
+        if(SceneManager.GetActiveScene().name=="Game") {
+            S_BGM.enabled = false;
+        }
+        else if(SceneManager.GetActiveScene().name !="Game"){
+            S_BGM.volume = PlayerPrefs.GetFloat("S_BGM");
+            S_BGM.enabled = true;
+        }
     }
     private void Start()
     {
@@ -31,12 +35,11 @@ public class SceneData : MonoBehaviour
             username = PlayerPrefs.GetString("UserName");
             SceneData._instance.username = username;
             if(SceneManager.GetActiveScene().name == "InputName"){
-                SceneManager.LoadScene("Login");
+                SceneManager.LoadScene("Main");
                 Destroy(SceneData._instance.gameObject);
             }
             else
                 return;
         }
-        
     }
 }

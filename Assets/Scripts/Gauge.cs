@@ -34,7 +34,7 @@ public class Gauge : MonoBehaviour
     }
     private void Fever()
     {
-        if (feverBar.localScale.y >= 480) { 
+        if (feverBar.localScale.y >= 480) {
             StartCoroutine(FeverTime());
             StopCoroutine(FeverTime());
             feverBar.localScale = new Vector3(1f, 0.1f, 1);        
@@ -46,17 +46,22 @@ public class Gauge : MonoBehaviour
     }
     IEnumerator FeverTime()
     {
+        S2_SoundManager._instance.S_BGM.Pause();
+        S2_SoundManager._instance.S_FeverBGM.Play();
         print("Fever~!\n");
         Feverpad.SetActive(true);
         ChickGroup.SetActive(false);
         IsFever = true;
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(5.5f);
         Feverpad.SetActive(false);
         ChickGroup.SetActive(true);
         IsFever = false;
+        S2_SoundManager._instance.S_FeverBGM.Stop();
+        S2_SoundManager._instance.S_BGM.Play();
     }
     public void FeverTouch()
     {
+        S2_SoundManager._instance.S_Fever.Play();
         GameObject EffectObj = Instantiate(FeverEffectPrefab,FeverPos);
         ParticleSystem instantEffect = EffectObj.GetComponent<ParticleSystem>();
         instantEffect.Play();
@@ -66,31 +71,40 @@ public class Gauge : MonoBehaviour
     private void TimeLapse()
     {
         float sec = 0.0f;
+        // switch(GameManager._instance.nScore)
+        // {
+        //     case int n when(0<=n && n <1000):
+        //         sec = (1/60.0f);
+        //         break;
+        //     case int n when(1000<=n && n <1500):
+        //         sec = (1/50.0f);
+        //         break;
+        //     case int n when(1500<=n && n <2000):
+        //         sec = (1/40.0f);
+        //         break;
+        //     case int n when(2000<=n && n <3000):
+        //         sec = (1/30.0f);
+        //         break;
+        //     case int n when(3000<=n && n <4000):
+        //         sec = (1/20.0f);
+        //         break;
+        //     case int n when(4000<=n && n <4500):
+        //         sec = (1/10.0f);
+        //         break;
+        //     case int n when(4500<=n && n <5000):
+        //         sec = (1/5.0f);
+        //         break;
+        //     default:
+        //         sec = (1/2.0f);
+        //         break;
+        // }
         switch(GameManager._instance.nScore)
         {
             case int n when(0<=n && n <1000):
-                sec = (1/60.0f);
-                break;
-            case int n when(1000<=n && n <1500):
-                sec = (1/50.0f);
-                break;
-            case int n when(1500<=n && n <2000):
-                sec = (1/40.0f);
-                break;
-            case int n when(2000<=n && n <3000):
-                sec = (1/30.0f);
-                break;
-            case int n when(3000<=n && n <4000):
-                sec = (1/20.0f);
-                break;
-            case int n when(4000<=n && n <4500):
-                sec = (1/10.0f);
-                break;
-            case int n when(4500<=n && n <5000):
                 sec = (1/5.0f);
                 break;
             default:
-                sec = (1/2.0f);
+                sec = (1/1.0f);
                 break;
         }
         if(!GameManager._instance.IsOver && !GameManager._instance.IsPause && !IsFever) {

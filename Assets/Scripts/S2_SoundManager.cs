@@ -7,6 +7,11 @@ public class S2_SoundManager : MonoBehaviour
     public static S2_SoundManager _instance;
     public AudioSource S_BtnClick;
     public AudioSource S_BGM;
+    public AudioSource S_Chick;
+    public AudioSource S_FeverBGM;
+    public AudioSource S_Fever;
+    public AudioSource S_Fail;
+    public AudioSource S_GameOver;
     public Slider EffectSoundslider;
     public Slider BGMslider;
     private void Awake()
@@ -24,12 +29,15 @@ public class S2_SoundManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("S_BGM",volume);
         S_BGM.volume = volume;
-        //SceneData._instance.S_BGMVolume = S_BGM.volume;
+        S_FeverBGM.volume = volume;
     }
     public void SetEffectVolume(float volume)
     {
         PlayerPrefs.SetFloat("S_BtnClick",volume);
         S_BtnClick.volume = volume;
-        //SceneData._instance.S_BtnClickVolume = S_BtnClick.volume;
+        S_Chick.volume = volume;
+        S_Fail.volume = volume;
+        S_Fever.volume = volume;
+        S_GameOver.volume = volume;
     }
 }
