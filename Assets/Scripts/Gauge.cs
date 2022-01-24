@@ -14,6 +14,8 @@ public class Gauge : MonoBehaviour
     private GameObject FeverEffectPrefab;
     [SerializeField]
     private GameObject ChickGroup;
+    [SerializeField]
+    private Animator animator;
     private ParticleSystem FeverEffect;
 
     public bool IsFever;
@@ -62,6 +64,7 @@ public class Gauge : MonoBehaviour
     public void FeverTouch()
     {
         S2_SoundManager._instance.S_Fever.Play();
+        animator.SetTrigger("Click");
         GameObject EffectObj = Instantiate(FeverEffectPrefab,FeverPos);
         ParticleSystem instantEffect = EffectObj.GetComponent<ParticleSystem>();
         instantEffect.Play();

@@ -6,8 +6,10 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
     public AudioSource S_BtnClick;
-    public AudioSource S_BGM;
-    public Slider BGMslider;
+    [SerializeField]
+    private AudioSource S_BGM;
+    [SerializeField]
+    private Slider BGMslider;
     public Slider EffectSoundslider;
     [SerializeField]
     private Image BGMImage;
@@ -40,7 +42,6 @@ public class SoundManager : MonoBehaviour
             BGMImage.enabled = true;
             BGMXImage.enabled = false;
         }
-
     }
     public void SetEffectVolume(float volume)
     {

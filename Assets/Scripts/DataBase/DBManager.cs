@@ -35,7 +35,6 @@ public class DBManager : MonoBehaviour
                 }
                 else if(!task.IsCanceled && !task.IsFaulted) {
                     mUser = task.Result;
-                    CreateUser(mUser.UserId);
                 }
                 else {
                     // 토스트메시지 형식으로 사용자에게 ("인터넷 연결을 확인해 주세요.")메시지 구현 필요
@@ -56,12 +55,10 @@ public class DBManager : MonoBehaviour
                 foreach (DataSnapshot data in snapshot.Children) {
                     IDictionary user = (IDictionary)data.Value;
                     if(mUser.UserId == data.Reference.Key) {
-                        Debug.Log((user["name"].ToString()));   // 나중에 지우기
                         mIsVaildName = true;
                     }
                     if(name == (string)user["name"] && mUser.UserId != data.Reference.Key) {
                         mIsVaildName = false;
-                        // 토스트메시지 형식으로 사용자에게 ("같은 이름이 있거나 비어있어요!!.")메시지 구현 필요
                     }
                     return;
                 }
@@ -70,17 +67,16 @@ public class DBManager : MonoBehaviour
         });
     }
 
-    // User통으로 넘기기
-    public void CreateUser(string _userID)
+    public void CreateUser()
     {
         User user = new User();
-        mRef.Child("users").Child(_userID).SetValueAsync(user.ToDictionary());
+        user.SetUserName(PlayerPrefs.GetString("UserName"));
+        mRef.Child("users").Child(mUser.UserId).SetValueAsync(user.ToDictionary());
     }
     public void UpdateUser()
     {
         string _userID = mUser.UserId;
         User user = new User();
-        user.SetUserName(SceneData._instance.username);
         user.SetUserScore(GameManager._instance.nScore);
         user.SetUserBestScore(GameManager._instance.nMaxScore);
         mRef.Child("users").Child(_userID).UpdateChildrenAsync(user.UpdateToDictionary());

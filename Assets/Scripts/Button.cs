@@ -38,7 +38,10 @@ public class Button : MonoBehaviour
         }
         else if(DBManager._instance.mIsVaildName){
             PlayerPrefs.SetString("UserName", Input_UserName.text);
-            SceneData._instance.username = PlayerPrefs.GetString("UserName");
+            User user= new User();
+            user.SetUserName(PlayerPrefs.GetString("UserName"));
+            DBManager._instance.CreateUser();
+            print(PlayerPrefs.GetString("UserName"));
             SceneManager.LoadScene("Main");
         }
     }

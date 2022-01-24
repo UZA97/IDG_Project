@@ -62,6 +62,6 @@ public class Rank : MonoBehaviour
 
     public void UserRankInfo()
     {
-        m_UserRankText.text = "현재 나의 최고 점수\n" + SceneData._instance.username + " : " + PlayerPrefs.GetInt("MaxScore").ToString();
+        m_UserRankText.text = "현재 나의 최고 점수\n" + PlayerPrefs.GetString("UserName") + " : " + PlayerPrefs.GetInt("MaxScore").ToString();
     }
 }

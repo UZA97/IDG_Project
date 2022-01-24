@@ -14,6 +14,14 @@ public class S2_SoundManager : MonoBehaviour
     public AudioSource S_GameOver;
     public Slider EffectSoundslider;
     public Slider BGMslider;
+    [SerializeField]
+    private Image BGMImage;
+    [SerializeField]
+    private Image EffectImage;
+    [SerializeField]
+    private Image BGMXImage;
+    [SerializeField]
+    private Image EffectXImage;
     private void Awake()
     {
         if(_instance == null) {
@@ -30,6 +38,14 @@ public class S2_SoundManager : MonoBehaviour
         PlayerPrefs.SetFloat("S_BGM",volume);
         S_BGM.volume = volume;
         S_FeverBGM.volume = volume;
+        if(BGMslider.value == 0) {
+            BGMImage.enabled = false;
+            BGMXImage.enabled = true;
+        }
+        else {
+            BGMImage.enabled = true;
+            BGMXImage.enabled = false;
+        }
     }
     public void SetEffectVolume(float volume)
     {
@@ -39,5 +55,13 @@ public class S2_SoundManager : MonoBehaviour
         S_Fail.volume = volume;
         S_Fever.volume = volume;
         S_GameOver.volume = volume;
+        if(EffectSoundslider.value == 0) {
+            EffectImage.enabled = false;
+            EffectXImage.enabled = true;
+        }
+        else {
+            EffectImage.enabled = true;
+            EffectXImage.enabled = false;
+        }
     }
 }
