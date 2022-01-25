@@ -11,22 +11,33 @@ public class GameManager : MonoBehaviour
     private Chick AfterChick;
 
     [Header("GameObject")]
-    public GameObject[] ChickPrefabs;
+    [SerializeField]
+    private GameObject[] ChickPrefabs;
+    [SerializeField]
+    private Transform CreatePos;
+    [SerializeField]
+    private Transform NextCreatePos;
+    [SerializeField]
+    private GameObject EffectPrefab;
     private List<GameObject> ListChick;
-    public GameObject ChickGroup;
-    public Transform CreatePos;
-    public Transform NextCreatePos;
     private GameObject ChickObj;
     private GameObject NextChickObj;
     private ParticleSystem correctEffect;
-    public GameObject EffectPrefab;
+    public GameObject ChickGroup;
 
     [Header("UI")]
-    public Text tScore;
-    public Text tMaxScore;
-    public Image[] ImageUILife;
-    public GameObject endGroup;
-    public Text tsubScore;
+    [SerializeField]
+    private Text tScore;
+    [SerializeField]
+    private Text tMaxScore;
+    [SerializeField]
+    private Image[] ImageUILife;
+    [SerializeField]
+    private GameObject endGroup;
+    [SerializeField]
+    private Text tsubScore;
+    [SerializeField]
+    private Text tSubMaxScore;
     public int nScore;
     public int nLife;
     public int nMaxScore = 0;
@@ -134,7 +145,8 @@ public class GameManager : MonoBehaviour
         S2_SoundManager._instance.S_GameOver.Play();
         IsOver = true;
         endGroup.SetActive(true);
-        tsubScore.text = "Score : " + tScore.text;
+        tsubScore.text = "최종점수 : " + tScore.text;
+        tSubMaxScore.text ="최고기록 : " + PlayerPrefs.GetInt("MaxScore");
         nMaxScore = Mathf.Max(PlayerPrefs.GetInt("MaxScore"), nScore);
         PlayerPrefs.SetInt("MaxScore", nMaxScore);
         DBManager._instance.UpdateUser();

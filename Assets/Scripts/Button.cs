@@ -41,7 +41,6 @@ public class Button : MonoBehaviour
             User user= new User();
             user.SetUserName(PlayerPrefs.GetString("UserName"));
             DBManager._instance.CreateUser();
-            print(PlayerPrefs.GetString("UserName"));
             SceneManager.LoadScene("Main");
         }
     }

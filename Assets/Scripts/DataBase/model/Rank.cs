@@ -9,8 +9,6 @@ public class Rank : MonoBehaviour
     private List<string> m_UserRankList = new List<string>();
     [SerializeField]
     private Text[] m_RankText;
-    [SerializeField]
-    private Text m_UserRankText;
     private bool m_TextLoadBool = false;
 
     void Start()
@@ -21,7 +19,6 @@ public class Rank : MonoBehaviour
     }
     void Update()
     {
-        UserRankInfo();
         if (m_TextLoadBool)
         {
             LoadText();
@@ -54,14 +51,8 @@ public class Rank : MonoBehaviour
     {
         User user = new User();
         m_TextLoadBool = false;
-        for(int i = 0; i<3; i++) {
-            //m_RankText[i].text = (i+1) +"등 "+ m_UserRankList[i];
-            m_RankText[i].text = (i+1) +"등 "+m_UserRankList[i];
+        for(int i = 0; i < m_UserRankList.Count; i++) {
+            m_RankText[i].text = (i+1) +"등 "+m_UserRankList[i].ToString();
         }
-    }
-
-    public void UserRankInfo()
-    {
-        m_UserRankText.text = "현재 나의 최고 점수\n" + PlayerPrefs.GetString("UserName") + " : " + PlayerPrefs.GetInt("MaxScore").ToString();
     }
 }
