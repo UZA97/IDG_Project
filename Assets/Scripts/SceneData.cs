@@ -9,7 +9,7 @@ public class SceneData : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;   // 프레임   60고정
+        Application.targetFrameRate = 60;
         if(_instance == null) {
             _instance = this;
         }

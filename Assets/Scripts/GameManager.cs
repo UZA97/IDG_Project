@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
             NextChickObj.SetActive(false);
             GameOver();
         }
-        Invoke("Pause", 0.5f);
+        Invoke("Pause", 1.0f);
     }
     private void Pause()
     {

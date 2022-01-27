@@ -53,13 +53,20 @@ public class Rank : MonoBehaviour
         User user = new User();
         m_TextLoadBool = false;
         int j=0;
+        int k = 0;
         for(int i = 0; i < m_UserRankList.Count; i++) {
-            if(i%2==0){
-                m_RankText[i].text = (i+1+j) +"등     "+m_UserRankList[i].ToString();
-                j--;
+            if(i%3==0){
+                m_RankText[i].text = (i+1+j) +"등";
+                j-=2;
             }
-            else if(i%2==1)
-                 m_RankText[i].text = m_UserRankList[i].ToString();
+            else if(i%3==1) {
+                m_RankText[i].text = " " +m_UserRankList[k].ToString();
+                k++;
+            }
+            else if(i%3 ==2) {
+                m_RankText[i].text = "\t"+ m_UserRankList[k].ToString();
+                k++;
+            }
         }
     }
 }

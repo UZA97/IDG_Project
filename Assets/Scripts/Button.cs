@@ -28,11 +28,12 @@ public class Button : MonoBehaviour
     {
         SoundManager._instance.S_BtnClick.Play();
         if(Input_UserName.text == "") {
-            Notificationtext.text = "이름이 비어있어요!!";
+            // Notificationtext.text = "이름이 비어있어요!!";
+            Notificationtext.text = "Name is blank.";
             return;
         }
         if(!DBManager._instance.mIsVaildName){
-            Notificationtext.text = "같은 이름이 있어요!!";
+            Notificationtext.text = "ID Account already exists, Try again.";
             return;
         }
         else if(DBManager._instance.mIsVaildName){

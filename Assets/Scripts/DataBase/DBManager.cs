@@ -38,7 +38,8 @@ public class DBManager : MonoBehaviour
                     mUser = task.Result;
                 }
                 else {
-                    button.Notificationtext.text = "인터넷 연결을 확인해 주세요";
+                    // button.Notificationtext.text = "인터넷 연결을 확인해 주세요";
+                    button.Notificationtext.text = "Please check your internet connection";
                 }
             }
         );
