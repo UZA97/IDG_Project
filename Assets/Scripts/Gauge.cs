@@ -113,6 +113,7 @@ public class Gauge : MonoBehaviour
         if(!GameManager._instance.IsOver && !GameManager._instance.IsPause && !IsFever) {
             fDecrement += sec * Time.deltaTime;
             if (TimeBar.localScale.x <= 0) {
+                S2_SoundManager._instance.S_Fail.Play();
                 GameManager._instance.Wrong();
                 TimeBar.localScale = new Vector3(1, 1, 1);        
                 fDecrement = 0.0f;

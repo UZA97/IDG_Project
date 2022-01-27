@@ -6,10 +6,10 @@ using Firebase.Database;
 
 public class DBManager : MonoBehaviour
 {
+    public static DBManager _instance;
     public FirebaseAuth mAuth;
     public DatabaseReference mRef;
     private Firebase.Auth.FirebaseUser mUser;
-    public static DBManager _instance;
     public bool mIsVaildName = false;
     private string[] mRank;
     private string mDatabaseUrl = "https://squid-9654f-default-rtdb.firebaseio.com/";
@@ -28,6 +28,7 @@ public class DBManager : MonoBehaviour
     }
     private void Login()
     {
+        Button button = new Button();
         mAuth.SignInAnonymouslyAsync().ContinueWith(
             task => { 
                 if (task.IsCompleted && !task.IsFaulted && !task.IsCanceled) {
@@ -37,7 +38,7 @@ public class DBManager : MonoBehaviour
                     mUser = task.Result;
                 }
                 else {
-                    // 토스트메시지 형식으로 사용자에게 ("인터넷 연결을 확인해 주세요.")메시지 구현 필요
+                    button.Notificationtext.text = "인터넷 연결을 확인해 주세요";
                 }
             }
         );

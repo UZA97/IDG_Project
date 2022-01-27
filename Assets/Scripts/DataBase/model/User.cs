@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class User : MonoBehaviour
 {   
-    public static User _instance;
     private string user_name;
     private int user_score;
     private int user_rank;
@@ -23,10 +22,7 @@ public class User : MonoBehaviour
     public void SetUserBestScore(int bestScore) {this.user_bestScore = bestScore;}
     public void SetUserCreateAt(DateTime createAt) {this.user_createAt = createAt;}
     public void SetUserUpdateTime(DateTime updateTime) {this.user_updateTime = updateTime;}    
-    private void Awake()
-    {
-        _instance = this;
-    }
+
     public User()
     {
         this.user_name = "";

@@ -10,8 +10,7 @@ public class Button : MonoBehaviour
     private GameObject RankGroup;
     [SerializeField]
     private GameObject OptionGroup;
-    [SerializeField]
-    private Text Notificationtext;
+    public Text Notificationtext;
 
     public void GameStart()
     {

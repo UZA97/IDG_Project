@@ -9,6 +9,7 @@ public class Rank : MonoBehaviour
     private List<string> m_UserRankList = new List<string>();
     [SerializeField]
     private Text[] m_RankText;
+    [SerializeField]
     private bool m_TextLoadBool = false;
 
     void Start()
@@ -38,11 +39,11 @@ public class Rank : MonoBehaviour
                 int count = 0;
                 foreach (DataSnapshot data in snapshot.Children) {
                     IDictionary rankInfo = (IDictionary)data.Value;
-                    m_UserRankList.Add(rankInfo["name"].ToString() + " : " + rankInfo["best_score"].ToString());
+                    m_UserRankList.Add(rankInfo["best_score"].ToString());
+                    m_UserRankList.Add(rankInfo["name"].ToString());
                     count++;
                 }
                 m_UserRankList.Reverse();
-
                 m_TextLoadBool = true;
             }
         });
@@ -51,8 +52,14 @@ public class Rank : MonoBehaviour
     {
         User user = new User();
         m_TextLoadBool = false;
+        int j=0;
         for(int i = 0; i < m_UserRankList.Count; i++) {
-            m_RankText[i].text = (i+1) +"등 "+m_UserRankList[i].ToString();
+            if(i%2==0){
+                m_RankText[i].text = (i+1+j) +"등     "+m_UserRankList[i].ToString();
+                j--;
+            }
+            else if(i%2==1)
+                 m_RankText[i].text = m_UserRankList[i].ToString();
         }
     }
 }
