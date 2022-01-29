@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+public enum ChickType{A,B,C}
 public class Button : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +10,7 @@ public class Button : MonoBehaviour
     private GameObject RankGroup;
     [SerializeField]
     private GameObject OptionGroup;
+    public ChickType chickType;
     public Text Notificationtext;
 
     public void GameStart()
@@ -93,5 +94,38 @@ public class Button : MonoBehaviour
     {
         RankGroup.SetActive(false);
         SoundManager._instance.S_BtnClick.Play();
+    }
+    public void PushBtn()
+    {
+        if(!GameManager._instance.IsPause) {
+            switch(chickType)
+            {
+                case ChickType.A:
+                CheckChick("A");
+                break;
+                case ChickType.B:
+                CheckChick("B");
+                break;
+                case ChickType.C:
+                CheckChick("C");
+                break;
+            }
+        }
+    }
+    private void CheckChick(string chickname)
+    {
+        if (GameManager._instance.chick == null)
+            return;
+        if (!GameManager._instance.IsPause)
+        {
+            if (GameManager._instance.chick.ChickName == chickname) {
+                S2_SoundManager._instance.S_Chick.Play();
+                GameManager._instance.DestroyChick();
+            }
+            else {
+                S2_SoundManager._instance.S_Fail.Play();
+                GameManager._instance.Wrong();
+            }
+        }
     }
 }

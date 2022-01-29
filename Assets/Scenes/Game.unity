@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 44718612}
   - component: {fileID: 44718611}
   - component: {fileID: 44718610}
+  - component: {fileID: 44718613}
   m_Layer: 5
   m_Name: Button B
   m_TagString: Untagged
@@ -213,6 +214,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 44718613}
+        m_MethodName: PushBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &44718611
 MonoBehaviour:
@@ -251,6 +263,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44718608}
   m_CullTransparentMesh: 0
+--- !u!114 &44718613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44718608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f18a63f523f644e8634bf828d90b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Input_UserName: {fileID: 0}
+  RankGroup: {fileID: 0}
+  OptionGroup: {fileID: 0}
+  chickType: 1
+  Notificationtext: {fileID: 0}
 --- !u!1 &56736762
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +701,7 @@ GameObject:
   - component: {fileID: 106535540}
   - component: {fileID: 106535539}
   - component: {fileID: 106535538}
+  - component: {fileID: 106535541}
   m_Layer: 5
   m_Name: Button A
   m_TagString: Untagged
@@ -752,6 +782,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 106535541}
+        m_MethodName: PushBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &106535539
 MonoBehaviour:
@@ -790,6 +831,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106535536}
   m_CullTransparentMesh: 0
+--- !u!114 &106535541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106535536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f18a63f523f644e8634bf828d90b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Input_UserName: {fileID: 0}
+  RankGroup: {fileID: 0}
+  OptionGroup: {fileID: 0}
+  chickType: 0
+  Notificationtext: {fileID: 0}
 --- !u!1 &193835337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1133,7 @@ GameObject:
   - component: {fileID: 284307786}
   - component: {fileID: 284307785}
   - component: {fileID: 284307784}
+  - component: {fileID: 284307787}
   m_Layer: 5
   m_Name: Button C
   m_TagString: Untagged
@@ -1155,6 +1214,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 284307787}
+        m_MethodName: PushBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &284307785
 MonoBehaviour:
@@ -1193,6 +1263,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284307782}
   m_CullTransparentMesh: 0
+--- !u!114 &284307787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284307782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f18a63f523f644e8634bf828d90b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Input_UserName: {fileID: 0}
+  RankGroup: {fileID: 0}
+  OptionGroup: {fileID: 0}
+  chickType: 2
+  Notificationtext: {fileID: 0}
 --- !u!1 &306585115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1389,7 @@ RectTransform:
   - {fileID: 1672994426}
   - {fileID: 1584066807}
   m_Father: {fileID: 1613488791}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3341,6 +3428,7 @@ MonoBehaviour:
   Input_UserName: {fileID: 0}
   RankGroup: {fileID: 0}
   OptionGroup: {fileID: 2088850316}
+  chickType: 0
   Notificationtext: {fileID: 0}
 --- !u!4 &837459270
 Transform:
@@ -3393,6 +3481,7 @@ MonoBehaviour:
   NextCreatePos: {fileID: 1642584477}
   EffectPrefab: {fileID: 8860743732315971851, guid: 6bd816c1ea8a9c64b98477585e170455,
     type: 3}
+  chick: {fileID: 0}
   ChickGroup: {fileID: 220309077}
   tScore: {fileID: 586848982}
   tMaxScore: {fileID: 242027333}
@@ -4400,7 +4489,7 @@ RectTransform:
   m_Children:
   - {fileID: 1637897574}
   m_Father: {fileID: 1613488791}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4606,7 +4695,7 @@ RectTransform:
   - {fileID: 1827402169}
   - {fileID: 835002778}
   m_Father: {fileID: 1613488791}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -5296,9 +5385,9 @@ RectTransform:
   - {fileID: 1615499953}
   - {fileID: 1307299436}
   - {fileID: 220309078}
+  - {fileID: 1343157176}
   - {fileID: 1396176454}
   - {fileID: 314337778}
-  - {fileID: 1343157176}
   - {fileID: 784470682}
   - {fileID: 2088850317}
   m_Father: {fileID: 0}

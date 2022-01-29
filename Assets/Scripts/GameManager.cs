@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    private Chick chick;
     private Chick AfterChick;
 
     [Header("GameObject")]
@@ -23,6 +21,7 @@ public class GameManager : MonoBehaviour
     private GameObject ChickObj;
     private GameObject NextChickObj;
     private ParticleSystem correctEffect;
+    public Chick chick;
     public GameObject ChickGroup;
 
     [Header("UI")]
@@ -110,7 +109,7 @@ public class GameManager : MonoBehaviour
         NextChickObj = Instantiate(ChickPrefabs[ranNextChick], NextCreatePos);
         NextChickObj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
     }
-    private void DestroyChick()
+    public void DestroyChick()
     {
         GameObject EffectObj = Instantiate(EffectPrefab, CreatePos);
         ParticleSystem instantEffect = EffectObj.GetComponent<ParticleSystem>();
@@ -151,52 +150,52 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("MaxScore", nMaxScore);
         DBManager._instance.UpdateUser();
     }
-    public void PushButtonA()
-    {
-        if (chick == null)
-            return;
-        if (!IsPause)
-        {
-            if (chick.ChickName == "A") {
-                S2_SoundManager._instance.S_Chick.Play();
-                DestroyChick();
-            }
-            else {
-                S2_SoundManager._instance.S_Fail.Play();
-                Wrong();
-            }
-        }
-    }
-    public void PushButtonB()
-    {
-        if (chick == null)
-            return;
-        if (!IsPause)
-        {
-            if (chick.ChickName == "B") {
-                S2_SoundManager._instance.S_Chick.Play();
-                DestroyChick();
-            }
-            else {
-                S2_SoundManager._instance.S_Fail.Play();
-                Wrong();
-            }
-        }
-    }
-    public void PushButtonC()
-    {
-        if (chick == null)
-            return;
-        if (!IsPause)
-        {
-            if (chick.ChickName == "C") {
-                S2_SoundManager._instance.S_Chick.Play();
-                DestroyChick();
-            }
-            else {
-                S2_SoundManager._instance.S_Fail.Play();
-                Wrong();
-            }
-        }
-    }
+    // public void PushButtonA()
+    // {
+    //     if (chick == null)
+    //         return;
+    //     if (!IsPause)
+    //     {
+    //         if (chick.ChickName == "A") {
+    //             S2_SoundManager._instance.S_Chick.Play();
+    //             DestroyChick();
+    //         }
+    //         else {
+    //             S2_SoundManager._instance.S_Fail.Play();
+    //             Wrong();
+    //         }
+    //     }
+    // }
+    // public void PushButtonB()
+    // {
+    //     if (chick == null)
+    //         return;
+    //     if (!IsPause)
+    //     {
+    //         if (chick.ChickName == "B") {
+    //             S2_SoundManager._instance.S_Chick.Play();
+    //             DestroyChick();
+    //         }
+    //         else {
+    //             S2_SoundManager._instance.S_Fail.Play();
+    //             Wrong();
+    //         }
+    //     }
+    // }
+    // public void PushButtonC()
+    // {
+    //     if (chick == null)
+    //         return;
+    //     if (!IsPause)
+    //     {
+    //         if (chick.ChickName == "C") {
+    //             S2_SoundManager._instance.S_Chick.Play();
+    //             DestroyChick();
+    //         }
+    //         else {
+    //             S2_SoundManager._instance.S_Fail.Play();
+    //             Wrong();
+    //         }
+    //     }
+    // }
 }
