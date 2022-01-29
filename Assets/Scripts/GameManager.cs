@@ -35,8 +35,6 @@ public class GameManager : MonoBehaviour
     private GameObject endGroup;
     [SerializeField]
     private Text tsubScore;
-    [SerializeField]
-    private Text tSubMaxScore;
     public int nScore;
     public int nLife;
     public int nMaxScore = 0;
@@ -145,7 +143,6 @@ public class GameManager : MonoBehaviour
         IsOver = true;
         endGroup.SetActive(true);
         tsubScore.text = "최종점수 : " + tScore.text;
-        tSubMaxScore.text ="최고기록 : " + PlayerPrefs.GetInt("MaxScore");
         nMaxScore = Mathf.Max(PlayerPrefs.GetInt("MaxScore"), nScore);
         PlayerPrefs.SetInt("MaxScore", nMaxScore);
         DBManager._instance.UpdateUser();

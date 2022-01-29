@@ -28,7 +28,8 @@ public class DBManager : MonoBehaviour
     }
     private void Login()
     {
-        Button button = new Button();
+        // Button button = new Button();
+        Button button = this.gameObject.AddComponent<Button>();
         mAuth.SignInAnonymouslyAsync().ContinueWith(
             task => { 
                 if (task.IsCompleted && !task.IsFaulted && !task.IsCanceled) {

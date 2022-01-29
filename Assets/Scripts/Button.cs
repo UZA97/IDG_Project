@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Text.RegularExpressions;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public enum ChickType{A,B,C}
@@ -12,6 +13,7 @@ public class Button : MonoBehaviour
     private GameObject OptionGroup;
     public ChickType chickType;
     public Text Notificationtext;
+    public bool nameCount = false;
 
     public void GameStart()
     {
@@ -28,16 +30,17 @@ public class Button : MonoBehaviour
     public void InputUserName()
     {
         SoundManager._instance.S_BtnClick.Play();
-        if(Input_UserName.text == "") {
+        if(Input_UserName.text == "" || !nameCount) {
             // Notificationtext.text = "이름이 비어있어요!!";
             Notificationtext.text = "Name is blank.";
             return;
         }
-        if(!DBManager._instance.mIsVaildName){
-            Notificationtext.text = "ID Account already exists, Try again.";
+        else if(!DBManager._instance.mIsVaildName){
+            // Notificationtext.text = "이미 같은 이름이 있어요!!";
+            Notificationtext.text = "ID Account already exists,\nTry again.";
             return;
         }
-        else if(DBManager._instance.mIsVaildName){
+        else if(DBManager._instance.mIsVaildName && nameCount){
             PlayerPrefs.SetString("UserName", Input_UserName.text);
             User user= new User();
             user.SetUserName(PlayerPrefs.GetString("UserName"));
@@ -47,7 +50,15 @@ public class Button : MonoBehaviour
     }
     public void CheckUserName(string name)
     {
-        DBManager._instance.IsVaildName(name);
+        string idChecker =name;
+        idChecker = Regex.Replace(idChecker,@"[^0-9a-zA-Z가-힣]","");
+        if(name.Length <2 || name !=idChecker){
+            nameCount = false;
+        }
+        else if(name.Length>=2 || name == idChecker){
+            nameCount = true;
+            DBManager._instance.IsVaildName(name);
+        }
     }
     public void ShowOption()
     {

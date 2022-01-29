@@ -6,7 +6,7 @@ using Firebase.Database;
 public class Rank : MonoBehaviour
 {
     private DatabaseReference reference;
-    private List<string> m_UserRankList = new List<string>();
+    private List<string> m_UserRankList;
     [SerializeField]
     private Text[] m_RankText;
     [SerializeField]
@@ -15,13 +15,12 @@ public class Rank : MonoBehaviour
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-        LoadData();
         m_UserRankList = new List<string>();
+        LoadData();
     }
     void Update()
     {
-        if (m_TextLoadBool)
-        {
+        if (m_TextLoadBool) {
             LoadText();
         }   
     }
@@ -41,6 +40,7 @@ public class Rank : MonoBehaviour
                     IDictionary rankInfo = (IDictionary)data.Value;
                     m_UserRankList.Add(rankInfo["best_score"].ToString());
                     m_UserRankList.Add(rankInfo["name"].ToString());
+                    m_UserRankList.Add("등");
                     count++;
                 }
                 m_UserRankList.Reverse();
@@ -52,20 +52,18 @@ public class Rank : MonoBehaviour
     {
         User user = new User();
         m_TextLoadBool = false;
-        int j=0;
-        int k = 0;
+        int j=1;
+
         for(int i = 0; i < m_UserRankList.Count; i++) {
             if(i%3==0){
-                m_RankText[i].text = (i+1+j) +"등";
-                j-=2;
+                m_RankText[i].text = j +m_UserRankList[i].ToString();
+                j++;
             }
             else if(i%3==1) {
-                m_RankText[i].text = " " +m_UserRankList[k].ToString();
-                k++;
+                m_RankText[i].text = " " +m_UserRankList[i].ToString();
             }
             else if(i%3 ==2) {
-                m_RankText[i].text = "\t"+ m_UserRankList[k].ToString();
-                k++;
+                m_RankText[i].text = "\t"+ m_UserRankList[i].ToString();
             }
         }
     }

@@ -9,6 +9,7 @@ public class SceneData : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         Application.targetFrameRate = 60;
         if(_instance == null) {
             _instance = this;

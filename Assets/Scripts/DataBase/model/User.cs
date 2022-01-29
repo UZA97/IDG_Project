@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class User : MonoBehaviour
+public class User
 {   
     private string user_name;
     private int user_score;
