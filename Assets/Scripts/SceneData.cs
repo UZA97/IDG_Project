@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneData : MonoBehaviour
@@ -6,7 +7,7 @@ public class SceneData : MonoBehaviour
     public static SceneData _instance;
     public AudioSource S_BGM;
     public AudioSource S_BtnClick;
-
+    public GameObject NetworkPanel;
     private void Awake()
     {
         PlayerPrefs.DeleteAll();
@@ -18,12 +19,15 @@ public class SceneData : MonoBehaviour
         if(PlayerPrefs.HasKey("UserName")) {
             SceneManager.LoadScene("Main");
         }
-        else {
-           return;
-        }
     }
     void Update()
     {
+        if(Application.internetReachability == NetworkReachability.NotReachable) {
+            NetworkPanel.SetActive(true);
+        }
+        else
+            NetworkPanel.SetActive(false);   
+
         if(SceneManager.GetActiveScene().name=="Game") {
             S_BGM.enabled = false;
         }

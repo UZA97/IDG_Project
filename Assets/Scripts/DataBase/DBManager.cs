@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+// using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
@@ -10,6 +12,7 @@ public class DBManager : MonoBehaviour
     public FirebaseAuth mAuth;
     public DatabaseReference mRef;
     private Firebase.Auth.FirebaseUser mUser;
+    public Text usernameText;
     public bool mIsVaildName = false;
     private string[] mRank;
     private string mDatabaseUrl = "https://squid-9654f-default-rtdb.firebaseio.com/";
@@ -26,10 +29,14 @@ public class DBManager : MonoBehaviour
     {
         Login();
     }
+    private void Update()
+    {
+        // if(SceneManager.GetActiveScene().name == "Main") {
+        //     UserName();
+        // }
+    }
     private void Login()
     {
-        // Button button = new Button();
-        Button button = this.gameObject.AddComponent<Button>();
         mAuth.SignInAnonymouslyAsync().ContinueWith(
             task => { 
                 if (task.IsCompleted && !task.IsFaulted && !task.IsCanceled) {
@@ -38,10 +45,8 @@ public class DBManager : MonoBehaviour
                 else if(!task.IsCanceled && !task.IsFaulted) {
                     mUser = task.Result;
                 }
-                else {
-                    // button.Notificationtext.text = "인터넷 연결을 확인해 주세요";
-                    button.Notificationtext.text = "Please check your internet connection";
-                }
+                else
+                    Login();
             }
         );
     }
@@ -83,5 +88,9 @@ public class DBManager : MonoBehaviour
         user.SetUserScore(GameManager._instance.nScore);
         user.SetUserBestScore(GameManager._instance.nMaxScore);
         mRef.Child("users").Child(_userID).UpdateChildrenAsync(user.UpdateToDictionary());
+    }
+    public void UserName()
+    {
+        usernameText.text = "ID : " + PlayerPrefs.GetString("UserName");
     }
 }

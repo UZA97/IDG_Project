@@ -27,7 +27,7 @@ public class Rank : MonoBehaviour
     
     void LoadData()
     {
-        reference.Child("users").OrderByChild("best_score").LimitToLast(100).GetValueAsync().ContinueWith(task =>
+        reference.Child("users").OrderByChild("best_score").LimitToLast(50).GetValueAsync().ContinueWith(task =>
         {            
             if(task.IsFaulted) {
                 LoadData();
@@ -41,6 +41,8 @@ public class Rank : MonoBehaviour
                     m_UserRankList.Add(rankInfo["best_score"].ToString());
                     m_UserRankList.Add(rankInfo["name"].ToString());
                     m_UserRankList.Add("등");
+                    print(rankInfo["name"].ToString());
+                    print(rankInfo["best_score"].ToString());
                     count++;
                 }
                 m_UserRankList.Reverse();
@@ -56,7 +58,7 @@ public class Rank : MonoBehaviour
 
         for(int i = 0; i < m_UserRankList.Count; i++) {
             if(i%3==0){
-                m_RankText[i].text = j +m_UserRankList[i].ToString();
+                m_RankText[i].text = j + m_UserRankList[i].ToString();
                 j++;
             }
             else if(i%3==1) {

@@ -20,13 +20,15 @@ public class Gauge : MonoBehaviour
 
     public bool IsFever;
     public float fDecrement;
-    public int nIncrement;
+    public float fIncrement;
 
     private void Awake()
     {
-        _instance = this;
+        if(_instance == null) {
+            _instance = this;
+        }
         fDecrement = 0.0f;
-        nIncrement = 0;
+        fIncrement = 0.0f;
         IsFever = false;
     }
     private void Update()
@@ -40,21 +42,20 @@ public class Gauge : MonoBehaviour
             StartCoroutine(FeverTime());
             StopCoroutine(FeverTime());
             feverBar.localScale = new Vector3(1f, 0.1f, 1);        
-            nIncrement = 0;
+            fIncrement = 0.0f;
         }
         else {
-            feverBar.localScale = new Vector3(1, nIncrement, 1);  
+            feverBar.localScale = new Vector3(1, fIncrement, 1);  
         }
     }
     IEnumerator FeverTime()
     {
         S2_SoundManager._instance.S_BGM.Pause();
         S2_SoundManager._instance.S_FeverBGM.Play();
-        print("Fever~!\n");
         Feverpad.SetActive(true);
         ChickGroup.SetActive(false);
         IsFever = true;
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitForSeconds(3.0f);
         Feverpad.SetActive(false);
         ChickGroup.SetActive(true);
         IsFever = false;
@@ -76,14 +77,20 @@ public class Gauge : MonoBehaviour
         float sec = 0.0f;
         switch(GameManager._instance.nScore)
         {
-            case int n when(0<=n && n <6000):
-                sec = (1/5.0f);
-                break;
-            case int n when(6000<=n && n <8000):
+            case int n when(0<=n && n <2000):
                 sec = (1/3.0f);
                 break;
+            case int n when(2000<=n && n <5000):
+                sec = (1/2.0f);
+                break;
+            case int n when(5000<=n && n <8000):
+                sec = (1/1.0f);
+                break;
+            case int n when(8000<=n && n <11000):
+                sec = (1/0.7f);
+                break;
             default:
-                sec = (1/2f);
+                sec = (1/0.5f);
                 break;
         }
         if(!GameManager._instance.IsOver && !GameManager._instance.IsPause && !IsFever) {
@@ -95,7 +102,7 @@ public class Gauge : MonoBehaviour
                 fDecrement = 0.0f;
             }
             else {
-                TimeBar.localScale = new Vector3(1-fDecrement, 1, 1); 
+                TimeBar.localScale = new Vector3(1-fDecrement, 1, 1);
             }
         }
     }
