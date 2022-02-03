@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         S2_SoundManager._instance.S_GameOver.Play();
         IsOver = true;
         endGroup.SetActive(true);
-        tsubScore.text = "Score : " + tScore.text;
+        tsubScore.text = tScore.text;
         nMaxScore = Mathf.Max(PlayerPrefs.GetInt("MaxScore"), nScore);
         PlayerPrefs.SetInt("MaxScore", nMaxScore);
         DBManager._instance.UpdateUser();

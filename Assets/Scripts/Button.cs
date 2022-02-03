@@ -31,13 +31,16 @@ public class Button : MonoBehaviour
     {
         SoundManager._instance.S_BtnClick.Play();
         if(Input_UserName.text == "" || !nameCount) {
-            // Notificationtext.text = "이름이 비어있거나 이름이 옳바르지 않아요!!";
-            Notificationtext.text = "There are\ncharacters unavailable.";
+            Notificationtext.text = "이름이 비어있거나\n이름이 옳바르지 않아요!!";
+            // Notificationtext.text = "There are\ncharacters unavailable.";
+
+
             return;
         }
         else if(!DBManager._instance.mIsVaildName){
-            // Notificationtext.text = "이미 같은 이름이 있어요!!";
-            Notificationtext.text = "ID Account already exists,\nTry again.";
+            Notificationtext.text = "이미 같은 이름이 있어요!!";
+            // Notificationtext.text = "ID Account already exists,\nTry again.";
+
             return;
         }
         else if(DBManager._instance.mIsVaildName && nameCount){

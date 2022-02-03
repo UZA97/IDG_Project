@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-// using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
@@ -31,9 +31,9 @@ public class DBManager : MonoBehaviour
     }
     private void Update()
     {
-        // if(SceneManager.GetActiveScene().name == "Main") {
-        //     UserName();
-        // }
+        if(SceneManager.GetActiveScene().name == "Main") {
+            UserName();
+        }
     }
     private void Login()
     {
