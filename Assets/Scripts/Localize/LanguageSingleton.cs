@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -9,7 +9,6 @@ public class Lang
     public string lang, langLocalize;
     public List<string> value = new List<string>();
 }
-
 
 public class LanguageSingleton : MonoBehaviour
 {
