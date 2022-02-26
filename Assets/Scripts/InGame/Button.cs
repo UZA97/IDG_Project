@@ -30,6 +30,7 @@ public class Button : MonoBehaviour
     public void InputUserName()
     {
         SoundManager._instance.S_BtnClick.Play();
+
         if(Input_UserName.text == "" || !nameCount) {
             Notificationtext.text = "이름이 비어있거나\n이름이 옳바르지 않아요!!";
             // Notificationtext.text = "There are\ncharacters unavailable.";
@@ -68,6 +69,7 @@ public class Button : MonoBehaviour
     public void ExitOption()
     {
         SoundManager._instance.S_BtnClick.Play();
+
         OptionGroup.SetActive(false);
     }
     public void InGameShowOption()
@@ -93,6 +95,7 @@ public class Button : MonoBehaviour
     public void EndGame()
     {
         SoundManager._instance.S_BtnClick.Play();
+
         Application.Quit();
     }
 
@@ -100,6 +103,7 @@ public class Button : MonoBehaviour
     {
         RankGroup.SetActive(true);
         SoundManager._instance.S_BtnClick.Play();
+
     }
     public void RanktoMain()
     {

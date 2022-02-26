@@ -6,21 +6,21 @@ using Firebase.Database;
 public class Rank : MonoBehaviour
 {
     private DatabaseReference reference;
-    private List<string> m_UserRankList;
+    private List<string> UserRankList;
     [SerializeField]
-    private Text[] m_RankText;
+    private Text[] RankText;
     [SerializeField]
-    private bool m_TextLoadBool = false;
+    private bool TextLoadBool = false;
 
     void Start()
     {
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-        m_UserRankList = new List<string>();
+        UserRankList = new List<string>();
         LoadData();
     }
     void Update()
     {
-        if (m_TextLoadBool) {
+        if (TextLoadBool) {
             LoadText();
         }   
     }
@@ -33,39 +33,37 @@ public class Rank : MonoBehaviour
                 LoadData();
             }
             else if (task.IsCompleted) {
-                m_UserRankList.Clear();
+                UserRankList.Clear();
                 DataSnapshot snapshot = task.Result;
                 int count = 0;
                 foreach (DataSnapshot data in snapshot.Children) {
                     IDictionary rankInfo = (IDictionary)data.Value;
-                    m_UserRankList.Add(rankInfo["best_score"].ToString());
-                    m_UserRankList.Add(rankInfo["name"].ToString());
-                    m_UserRankList.Add("등");
-                    print(rankInfo["name"].ToString());
-                    print(rankInfo["best_score"].ToString());
+                    UserRankList.Add(rankInfo["best_score"].ToString());
+                    UserRankList.Add(rankInfo["name"].ToString());
+                    UserRankList.Add("등");
                     count++;
                 }
-                m_UserRankList.Reverse();
-                m_TextLoadBool = true;
+                UserRankList.Reverse();
+                TextLoadBool = true;
             }
         });
     }
     private void LoadText()
     {
         User user = new User();
-        m_TextLoadBool = false;
+        TextLoadBool = false;
         int j=1;
 
-        for(int i = 0; i < m_UserRankList.Count; i++) {
+        for(int i = 0; i < UserRankList.Count; i++) {
             if(i%3==0){
-                m_RankText[i].text = j + m_UserRankList[i].ToString();
+                RankText[i].text = j + UserRankList[i].ToString();
                 j++;
             }
             else if(i%3==1) {
-                m_RankText[i].text = " " +m_UserRankList[i].ToString();
+                RankText[i].text = " " + UserRankList[i].ToString();
             }
             else if(i%3 ==2) {
-                m_RankText[i].text = "\t"+ m_UserRankList[i].ToString();
+                RankText[i].text = "\t"+ UserRankList[i].ToString();
             }
         }
     }

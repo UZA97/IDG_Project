@@ -10,7 +10,7 @@ public class SceneData : MonoBehaviour
     public GameObject NetworkPanel;
     private void Awake()
     {
-        PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
         Application.targetFrameRate = 60;
         if(_instance == null) {
             _instance = this;
