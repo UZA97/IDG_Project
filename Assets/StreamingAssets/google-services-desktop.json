@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "280139395707",
-    "project_id": "squid-9654f",
-    "firebase_url" :"https://squid-9654f-default-rtdb.firebaseio.com/",
-    "storage_bucket": "squid-9654f.appspot.com"
+    "project_number": "106538675401",
+    "firebase_url": "https://test-ecd95-default-rtdb.firebaseio.com",
+    "project_id": "test-ecd95",
+    "storage_bucket": "test-ecd95.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:280139395707:android:60cb919458114bc3f828de",
+        "mobilesdk_app_id": "1:106538675401:android:b8eb8e11448131277c3118",
         "android_client_info": {
-          "package_name": "com.DefaultCompany.Project1"
+          "package_name": "com.idg.escapechick"
         }
       },
       "oauth_client": [
         {
-          "client_id": "280139395707-84ek1euvlgra7b6gejvb3872sl9kcfvg.apps.googleusercontent.com",
+          "client_id": "106538675401-vgeuj59jvk6smpptvcq9n4i7vmq2leuv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB__XqaRy5u0BVF9z0MNZ4ahmpN7iEv6zY"
+          "current_key": "AIzaSyApDyKpOotXQn_WYi4mOfT-VCNfbnzDiKY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "280139395707-84ek1euvlgra7b6gejvb3872sl9kcfvg.apps.googleusercontent.com",
+              "client_id": "106538675401-vgeuj59jvk6smpptvcq9n4i7vmq2leuv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

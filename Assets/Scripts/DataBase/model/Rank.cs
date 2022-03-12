@@ -38,6 +38,7 @@ public class Rank : MonoBehaviour
                 int count = 0;
                 foreach (DataSnapshot data in snapshot.Children) {
                     IDictionary rankInfo = (IDictionary)data.Value;
+                    Debug.Log("Name: " + rankInfo["name"] + " / Score: " + rankInfo["score"]);
                     UserRankList.Add(rankInfo["best_score"].ToString());
                     UserRankList.Add(rankInfo["name"].ToString());
                     UserRankList.Add("등");

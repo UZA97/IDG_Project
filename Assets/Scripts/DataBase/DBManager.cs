@@ -15,7 +15,7 @@ public class DBManager : MonoBehaviour
     public Text usernameText;
     public bool mIsVaildName = false;
     private string[] mRank;
-    private string mDatabaseUrl = "https://squid-9654f-default-rtdb.firebaseio.com/";
+    private string mDatabaseUrl = "https://test-ecd95-default-rtdb.firebaseio.com/";
     private void Awake()
     {
         if(_instance == null) {
