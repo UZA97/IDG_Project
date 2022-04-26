@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Gauge : MonoBehaviour
 {
-    public static Gauge _instance;
     public RectTransform TimeBar;
     public RectTransform feverBar;
     [SerializeField]
@@ -16,7 +15,6 @@ public class Gauge : MonoBehaviour
     private GameObject ChickGroup;
     [SerializeField]
     private Animator animator;
-    private ParticleSystem FeverEffect;
 
     public bool IsFever;
     public float fDecrement;
@@ -24,9 +22,6 @@ public class Gauge : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance == null) {
-            _instance = this;
-        }
         fDecrement = 0.0f;
         fIncrement = 0.0f;
         IsFever = false;

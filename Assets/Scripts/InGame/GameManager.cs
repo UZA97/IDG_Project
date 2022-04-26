@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private ParticleSystem correctEffect;
     public Chick chick;
     public GameObject ChickGroup;
+    public Gauge gauge;
 
     [Header("UI")]
     [SerializeField]
@@ -115,8 +116,8 @@ public class GameManager : MonoBehaviour
         Destroy(EffectObj,1);
         nScore += 100;
         Destroy(chick.gameObject);
-        Gauge._instance.fIncrement += 24f;
-        Gauge._instance.fDecrement = 0.0f;
+        gauge.fIncrement += 24f;
+        gauge.fDecrement = 0.0f;
     }
     public void Wrong()
     {
