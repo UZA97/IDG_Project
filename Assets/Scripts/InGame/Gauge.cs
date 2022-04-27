@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Gauge : MonoBehaviour
 {
-    public static Gauge _instance;
     public RectTransform TimeBar;
     public RectTransform feverBar;
     [SerializeField]
@@ -16,7 +15,6 @@ public class Gauge : MonoBehaviour
     private GameObject ChickGroup;
     [SerializeField]
     private Animator animator;
-    private ParticleSystem FeverEffect;
 
     public bool IsFever;
     public float fDecrement;
@@ -24,9 +22,6 @@ public class Gauge : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance == null) {
-            _instance = this;
-        }
         fDecrement = 0.0f;
         fIncrement = 0.0f;
         IsFever = false;
@@ -40,7 +35,7 @@ public class Gauge : MonoBehaviour
     {
         if (feverBar.localScale.y >= 480) {
             StartCoroutine(FeverTime());
-            StopCoroutine(FeverTime());
+            //StopCoroutine(FeverTime());
             feverBar.localScale = new Vector3(1f, 0.1f, 1);        
             fIncrement = 0.0f;
         }
@@ -93,7 +88,7 @@ public class Gauge : MonoBehaviour
                 sec = (1/0.5f);
                 break;
         }
-        if(!GameManager._instance.IsOver && !GameManager._instance.IsPause && !IsFever) {
+        if(!GameManager._instance.isOver && !GameManager._instance.isPause && !IsFever) {
             fDecrement += sec * Time.deltaTime;
             if (TimeBar.localScale.x <= 0) {
                 S2_SoundManager._instance.S_Fail.Play();

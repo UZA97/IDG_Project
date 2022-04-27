@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    private Chick AfterChick;
 
     [Header("GameObject")]
     [SerializeField]
@@ -17,12 +16,11 @@ public class GameManager : MonoBehaviour
     private Transform NextCreatePos;
     [SerializeField]
     private GameObject EffectPrefab;
-    private List<GameObject> ListChick;
     private GameObject ChickObj;
     private GameObject NextChickObj;
-    private ParticleSystem correctEffect;
     public Chick chick;
     public GameObject ChickGroup;
+    public Gauge gauge;
 
     [Header("UI")]
     [SerializeField]
@@ -39,10 +37,9 @@ public class GameManager : MonoBehaviour
     public int nLife;
     public int nMaxScore = 0;
 
-    [Header("============================")]
-
-    public bool IsOver;
-    public bool IsPause;
+    [Header("=============================")]
+    public bool isOver;
+    public bool isPause;
     private int ranNextChick;
 
     private void Awake()
@@ -58,8 +55,8 @@ public class GameManager : MonoBehaviour
         chick = GetComponent<Chick>();
         ChickObj = null;
         NextChickObj = null;
-        IsOver = false;
-        IsPause = false;
+        isOver = false;
+        isPause = false;
     }
 
     private void Start()
@@ -72,7 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void MakeChick()
     {
-        if (!IsOver)
+        if (!isOver)
         {
             if (NextChickObj == null)
             {
@@ -115,13 +112,13 @@ public class GameManager : MonoBehaviour
         Destroy(EffectObj,1);
         nScore += 100;
         Destroy(chick.gameObject);
-        Gauge._instance.fIncrement += 24f;
-        Gauge._instance.fDecrement = 0.0f;
+        gauge.fIncrement += 24f;
+        gauge.fDecrement = 0.0f;
     }
     public void Wrong()
     {
-        IsPause = true;
-        chick.Chickanimator.SetBool("Wrong", true);
+        isPause = true;
+        chick.chickanimator.SetBool("Wrong", true);
         nLife--;
         ImageUILife[nLife].color = new Color(0.2f, 0.2f, 0.2f, 0.4f);
         if (nLife <= 0)
@@ -134,13 +131,13 @@ public class GameManager : MonoBehaviour
     }
     private void Pause()
     {
-        IsPause = false;
-        chick.Chickanimator.SetBool("Wrong", false);
+        isPause = false;
+        chick.chickanimator.SetBool("Wrong", false);
     }
     private void GameOver()
     {
         S2_SoundManager._instance.S_GameOver.Play();
-        IsOver = true;
+        isOver = true;
         endGroup.SetActive(true);
         tsubScore.text = ": "+tScore.text;
         nMaxScore = Mathf.Max(PlayerPrefs.GetInt("MaxScore"), nScore);

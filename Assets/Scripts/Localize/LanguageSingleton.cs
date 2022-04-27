@@ -34,10 +34,12 @@ public class LanguageSingleton : MonoBehaviour
     {
         int langIndex = PlayerPrefs.GetInt("LangIndex", -1);
         int systemIndex = Langs.FindIndex(x => x.lang.ToLower() == Application.systemLanguage.ToString().ToLower());
-        if (systemIndex == -1) systemIndex = 0;
-        int index = langIndex == -1 ? systemIndex : langIndex;
-
-		SetLangIndex(index);
+        if (systemIndex == -1)
+            systemIndex = 0;
+        //int index = langIndex == -1 ? systemIndex : langIndex;
+        if (langIndex == -1)
+            langIndex = systemIndex;;
+		SetLangIndex(langIndex);
 	}
 
 	public void SetLangIndex(int index)
@@ -71,7 +73,8 @@ public class LanguageSingleton : MonoBehaviour
         for (int i = 0; i < rowSize; i++)
         {
             string[] column = row[i].Split('\t');
-            for (int j = 0; j < columnSize; j++) Sentence[i, j] = column[j];
+            for (int j = 0; j < columnSize; j++) 
+                Sentence[i, j] = column[j];
         }
 
         Langs = new List<Lang>();
@@ -82,7 +85,7 @@ public class LanguageSingleton : MonoBehaviour
             lang.langLocalize = Sentence[1, i];
 
             for (int j = 2; j < rowSize; j++) lang.value.Add(Sentence[j, i]);
-            Langs.Add(lang);
+                Langs.Add(lang);
         }
     }
 }

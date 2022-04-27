@@ -2,10 +2,11 @@ using UnityEngine;
 public class Chick : MonoBehaviour
 {
     public GameManager gameManager;
-    public string ChickName;
-    public Animator Chickanimator;
+    public string chickName;
+    public Animator chickanimator;
+    public ChickType chickType;
     private void Awake()
     {
-        Chickanimator = GetComponent<Animator>();
+        chickanimator = GetComponent<Animator>();
     }
 }

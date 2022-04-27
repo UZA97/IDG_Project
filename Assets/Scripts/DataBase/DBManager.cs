@@ -9,21 +9,21 @@ using Firebase.Database;
 public class DBManager : MonoBehaviour
 {
     public static DBManager _instance;
-    public FirebaseAuth mAuth;
-    public DatabaseReference mRef;
-    private Firebase.Auth.FirebaseUser mUser;
+    public FirebaseAuth auth;
+    public DatabaseReference reference;
+    private FirebaseUser firebaseUser;
     public Text usernameText;
-    public bool mIsVaildName = false;
-    private string[] mRank;
-    private string mDatabaseUrl = "https://test-ecd95-default-rtdb.firebaseio.com/";
+    public bool isVaildName = false;
+    private string databaseUrl = "https://test-ecd95-default-rtdb.firebaseio.com/";
+
     private void Awake()
     {
         if(_instance == null) {
             _instance = this;
         }
-        mAuth = FirebaseAuth.DefaultInstance;
-        mRef = FirebaseDatabase.DefaultInstance.RootReference;
-        FirebaseApp.DefaultInstance.Options.DatabaseUrl = new System.Uri(mDatabaseUrl);
+        auth = FirebaseAuth.DefaultInstance;
+        reference = FirebaseDatabase.DefaultInstance.RootReference;
+        FirebaseApp.DefaultInstance.Options.DatabaseUrl = new System.Uri(databaseUrl);
     }
     private void Start()
     {
@@ -31,19 +31,19 @@ public class DBManager : MonoBehaviour
     }
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Main") {
+        if(SceneManager.GetActiveScene().name == "2.Main") {
             UserName();
         }
     }
     private void Login()
     {
-        mAuth.SignInAnonymouslyAsync().ContinueWith(
+        auth.SignInAnonymouslyAsync().ContinueWith(
             task => { 
                 if (task.IsCompleted && !task.IsFaulted && !task.IsCanceled) {
-                    mUser = task.Result;
+                    firebaseUser = task.Result;
                 }
                 else if(!task.IsCanceled && !task.IsFaulted) {
-                    mUser = task.Result;
+                    firebaseUser = task.Result;
                 }
                 else
                     Login();
@@ -52,26 +52,26 @@ public class DBManager : MonoBehaviour
     }
     public void IsVaildName(string name) 
     {
-        mRef.Child("users").OrderByChild("name").EqualTo(name).GetValueAsync().ContinueWith(task => 
+        reference.Child("users").OrderByChild("name").EqualTo(name).GetValueAsync().ContinueWith(task => 
         {
             if(task.IsFaulted) {
-                mIsVaildName = false;
+                isVaildName = false;
                 return;
             }
             else if (task.IsCompleted) {
                 DataSnapshot snapshot = task.Result;
                 foreach (DataSnapshot data in snapshot.Children) {
-                    IDictionary user = (IDictionary)data.Value;
-                    if(mUser.UserId == data.Reference.Key) {
-                        mIsVaildName = true;
+                    IDictionary userInfo = (IDictionary)data.Value;
+                    if(firebaseUser.UserId == data.Reference.Key) {
+                        isVaildName = true;
                     }
-                    if(name == (string)user["name"] && mUser.UserId != data.Reference.Key) {
-                        mIsVaildName = false;
+                    if(name == (string)userInfo["name"] && firebaseUser.UserId != data.Reference.Key) {
+                        isVaildName = false;
                     }
                     return;
                 }
             }
-            mIsVaildName = true;
+            isVaildName = true;
         });
     }
 
@@ -79,15 +79,15 @@ public class DBManager : MonoBehaviour
     {
         User user = new User();
         user.SetUserName(PlayerPrefs.GetString("UserName"));
-        mRef.Child("users").Child(mUser.UserId).SetValueAsync(user.ToDictionary());
+        reference.Child("users").Child(firebaseUser.UserId).SetValueAsync(user.ToDictionary());
     }
     public void UpdateUser()
     {
-        string _userID = mUser.UserId;
+        string _userID = firebaseUser.UserId;
         User user = new User();
         user.SetUserScore(GameManager._instance.nScore);
         user.SetUserBestScore(GameManager._instance.nMaxScore);
-        mRef.Child("users").Child(_userID).UpdateChildrenAsync(user.UpdateToDictionary());
+        reference.Child("users").Child(_userID).UpdateChildrenAsync(user.UpdateToDictionary());
     }
     public void UserName()
     {
