@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    private Chick AfterChick;
 
     [Header("GameObject")]
     [SerializeField]
@@ -38,10 +37,9 @@ public class GameManager : MonoBehaviour
     public int nLife;
     public int nMaxScore = 0;
 
-    [Header("============================")]
-
-    public bool IsOver;
-    public bool IsPause;
+    [Header("=============================")]
+    public bool isOver;
+    public bool isPause;
     private int ranNextChick;
 
     private void Awake()
@@ -57,8 +55,8 @@ public class GameManager : MonoBehaviour
         chick = GetComponent<Chick>();
         ChickObj = null;
         NextChickObj = null;
-        IsOver = false;
-        IsPause = false;
+        isOver = false;
+        isPause = false;
     }
 
     private void Start()
@@ -71,7 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void MakeChick()
     {
-        if (!IsOver)
+        if (!isOver)
         {
             if (NextChickObj == null)
             {
@@ -119,7 +117,7 @@ public class GameManager : MonoBehaviour
     }
     public void Wrong()
     {
-        IsPause = true;
+        isPause = true;
         chick.chickanimator.SetBool("Wrong", true);
         nLife--;
         ImageUILife[nLife].color = new Color(0.2f, 0.2f, 0.2f, 0.4f);
@@ -133,13 +131,13 @@ public class GameManager : MonoBehaviour
     }
     private void Pause()
     {
-        IsPause = false;
+        isPause = false;
         chick.chickanimator.SetBool("Wrong", false);
     }
     private void GameOver()
     {
         S2_SoundManager._instance.S_GameOver.Play();
-        IsOver = true;
+        isOver = true;
         endGroup.SetActive(true);
         tsubScore.text = ": "+tScore.text;
         nMaxScore = Mathf.Max(PlayerPrefs.GetInt("MaxScore"), nScore);

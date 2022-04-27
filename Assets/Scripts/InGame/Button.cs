@@ -24,7 +24,7 @@ public class Button : MonoBehaviour
     {
         S2_SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("3.Game");
-        GameManager._instance.IsOver = false;
+        GameManager._instance.isOver = false;
     }
 
     public void InputUserName()
@@ -76,7 +76,7 @@ public class Button : MonoBehaviour
     public void InGameShowOption()
     {
         S2_SoundManager._instance.S_BtnClick.Play();
-        GameManager._instance.IsPause = true;
+        GameManager._instance.isPause = true;
         GameManager._instance.ChickGroup.SetActive(false);
         OptionGroup.SetActive(true);
     }
@@ -84,12 +84,12 @@ public class Button : MonoBehaviour
     {
         S2_SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("2.Main");
-        SceneData._instance.S_BGM.Play();
+        //SceneData._instance.S_BGM.Play();
     }
     public void InGameExitOption()
     {
         S2_SoundManager._instance.S_BtnClick.Play();
-        GameManager._instance.IsPause = false;
+        GameManager._instance.isPause = false;
         GameManager._instance.ChickGroup.SetActive(true);
         OptionGroup.SetActive(false);
     }
@@ -113,17 +113,20 @@ public class Button : MonoBehaviour
     }
     public void PushBtn()
     {
-        if(!GameManager._instance.IsPause) {
+        if(!GameManager._instance.isPause) {
             switch(chickType)
             {
                 case ChickType.A:
-                CheckChick("A");
+                //CheckChick("A");
+                CheckChick(ChickType.A);
                 break;
                 case ChickType.B:
-                CheckChick("B");
+                //CheckChick("B");
+                CheckChick(ChickType.B);
                 break;
                 case ChickType.C:
-                CheckChick("C");
+                //CheckChick("C");
+                CheckChick(ChickType.C);
                 break;
             }
         }
@@ -132,13 +135,31 @@ public class Button : MonoBehaviour
     {
         if (GameManager._instance.chick == null)
             return;
-        if (!GameManager._instance.IsPause)
+        if (!GameManager._instance.isPause)
         {
             if (GameManager._instance.chick.chickName == chickname) {
                 S2_SoundManager._instance.S_Chick.Play();
                 GameManager._instance.DestroyChick();
             }
             else {
+                S2_SoundManager._instance.S_Fail.Play();
+                GameManager._instance.Wrong();
+            }
+        }
+    }
+    private void CheckChick(ChickType chickType)
+    {
+        if (GameManager._instance.chick == null)
+            return;
+        if (!GameManager._instance.isPause)
+        {
+            if (GameManager._instance.chick.chickType == chickType)
+            {
+                S2_SoundManager._instance.S_Chick.Play();
+                GameManager._instance.DestroyChick();
+            }
+            else
+            {
                 S2_SoundManager._instance.S_Fail.Play();
                 GameManager._instance.Wrong();
             }

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneData : MonoBehaviour
 {
-    public static SceneData _instance;
+    //public static SceneData _instance;
     public AudioSource S_BGM;
     public AudioSource S_BtnClick;
     public GameObject NetworkPanel;
@@ -12,9 +12,9 @@ public class SceneData : MonoBehaviour
     {
         //PlayerPrefs.DeleteAll();
         Application.targetFrameRate = 60;
-        if(_instance == null) {
-            _instance = this;
-        }
+        //if(_instance == null) {
+        //    _instance = this;
+        //}
         DontDestroyOnLoad(gameObject);
         if(PlayerPrefs.HasKey("UserName")) {
             SceneManager.LoadScene("2.Main");

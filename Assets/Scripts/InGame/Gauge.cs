@@ -35,7 +35,7 @@ public class Gauge : MonoBehaviour
     {
         if (feverBar.localScale.y >= 480) {
             StartCoroutine(FeverTime());
-            StopCoroutine(FeverTime());
+            //StopCoroutine(FeverTime());
             feverBar.localScale = new Vector3(1f, 0.1f, 1);        
             fIncrement = 0.0f;
         }
@@ -88,7 +88,7 @@ public class Gauge : MonoBehaviour
                 sec = (1/0.5f);
                 break;
         }
-        if(!GameManager._instance.IsOver && !GameManager._instance.IsPause && !IsFever) {
+        if(!GameManager._instance.isOver && !GameManager._instance.isPause && !IsFever) {
             fDecrement += sec * Time.deltaTime;
             if (TimeBar.localScale.x <= 0) {
                 S2_SoundManager._instance.S_Fail.Play();
