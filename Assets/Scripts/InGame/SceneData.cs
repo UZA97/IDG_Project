@@ -17,7 +17,7 @@ public class SceneData : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         if(PlayerPrefs.HasKey("UserName")) {
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("2.Main");
         }
     }
     void Update()
@@ -28,10 +28,10 @@ public class SceneData : MonoBehaviour
         else
             NetworkPanel.SetActive(false);   
 
-        if(SceneManager.GetActiveScene().name=="Game") {
+        if(SceneManager.GetActiveScene().name=="3.Game") {
             S_BGM.enabled = false;
         }
-        else if(SceneManager.GetActiveScene().name !="Game"){
+        else if(SceneManager.GetActiveScene().name !="3.Game"){
             if(!PlayerPrefs.HasKey("S_BGM") &&!PlayerPrefs.HasKey("S_BtnClick")) {
                 PlayerPrefs.SetFloat("S_BGM",1.0f);
                 PlayerPrefs.SetFloat("S_BtnClick",1.0f);

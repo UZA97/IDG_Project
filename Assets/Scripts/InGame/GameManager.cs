@@ -17,10 +17,8 @@ public class GameManager : MonoBehaviour
     private Transform NextCreatePos;
     [SerializeField]
     private GameObject EffectPrefab;
-    private List<GameObject> ListChick;
     private GameObject ChickObj;
     private GameObject NextChickObj;
-    private ParticleSystem correctEffect;
     public Chick chick;
     public GameObject ChickGroup;
     public Gauge gauge;
@@ -122,7 +120,7 @@ public class GameManager : MonoBehaviour
     public void Wrong()
     {
         IsPause = true;
-        chick.Chickanimator.SetBool("Wrong", true);
+        chick.chickanimator.SetBool("Wrong", true);
         nLife--;
         ImageUILife[nLife].color = new Color(0.2f, 0.2f, 0.2f, 0.4f);
         if (nLife <= 0)
@@ -136,7 +134,7 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         IsPause = false;
-        chick.Chickanimator.SetBool("Wrong", false);
+        chick.chickanimator.SetBool("Wrong", false);
     }
     private void GameOver()
     {

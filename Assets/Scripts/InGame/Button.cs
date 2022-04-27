@@ -18,12 +18,12 @@ public class Button : MonoBehaviour
     public void GameStart()
     {
         SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("3.Game");
     }
     public void Restart()
     {
         S2_SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("3.Game");
         GameManager._instance.IsOver = false;
     }
 
@@ -36,17 +36,18 @@ public class Button : MonoBehaviour
             // Notificationtext.text = "There are\ncharacters unavailable.";
             return;
         }
-        else if(!DBManager._instance.mIsVaildName){
+        else if(!DBManager._instance.isVaildName)
+        {
             Notificationtext.text = "이미 같은 이름이 있어요!!";
             // Notificationtext.text = "ID Account already exists,\nTry again.";
             return;
         }
-        else if(DBManager._instance.mIsVaildName && nameCount){
+        else if(DBManager._instance.isVaildName && nameCount){
             PlayerPrefs.SetString("UserName", Input_UserName.text);
             User user= new User();
             user.SetUserName(PlayerPrefs.GetString("UserName"));
             DBManager._instance.CreateUser();
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("2.Main");
         }
     }
     public void CheckUserName(string name)
@@ -82,7 +83,7 @@ public class Button : MonoBehaviour
     public void GameToMain()
     {
         S2_SoundManager._instance.S_BtnClick.Play();
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("2.Main");
         SceneData._instance.S_BGM.Play();
     }
     public void InGameExitOption()
@@ -133,7 +134,7 @@ public class Button : MonoBehaviour
             return;
         if (!GameManager._instance.IsPause)
         {
-            if (GameManager._instance.chick.ChickName == chickname) {
+            if (GameManager._instance.chick.chickName == chickname) {
                 S2_SoundManager._instance.S_Chick.Play();
                 GameManager._instance.DestroyChick();
             }

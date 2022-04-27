@@ -511,6 +511,7 @@ MonoBehaviour:
     type: 3}
   chick: {fileID: 0}
   ChickGroup: {fileID: 20346556}
+  gauge: {fileID: 62426531}
   tScore: {fileID: 650507051}
   tMaxScore: {fileID: 250287358}
   ImageUILife:

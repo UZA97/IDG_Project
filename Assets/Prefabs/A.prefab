@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  ChickName: A
-  Chickanimator: {fileID: 0}
+  chickName: A
+  chickanimator: {fileID: 8208553695591627118}
 --- !u!95 &8208553695591627118
 Animator:
   serializedVersion: 3
