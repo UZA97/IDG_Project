@@ -62,6 +62,15 @@ public class Button : MonoBehaviour
             DBManager._instance.IsVaildName(name);
         }
     }
+
+    public void ShowObject(GameObject _obj)
+	{
+        _obj.SetActive(true);
+	}
+    public void OffObject(GameObject _obj)
+    {
+        _obj.SetActive(false);
+    }
     public void ShowOption()
     {
         SoundManager._instance.S_BtnClick.Play();

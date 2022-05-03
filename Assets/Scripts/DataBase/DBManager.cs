@@ -29,13 +29,14 @@ public class DBManager : MonoBehaviour
     {
         Login();
     }
-    private void Update()
-    {
-        if(SceneManager.GetActiveScene().name == "2.Main") {
+	private void Update()
+	{
+        if (SceneManager.GetActiveScene().name == "2.Main")
+        {
             UserName();
         }
     }
-    private void Login()
+	private void Login()
     {
         auth.SignInAnonymouslyAsync().ContinueWith(
             task => { 

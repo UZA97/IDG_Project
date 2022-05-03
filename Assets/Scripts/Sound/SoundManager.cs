@@ -24,13 +24,34 @@ public class SoundManager : MonoBehaviour
         if(_instance == null) {
             _instance = this;
         }
+        DontDestroyOnLoad(gameObject);
         EffectSoundslider.value = PlayerPrefs.GetFloat("S_BtnClick");
         S_BtnClick.volume = EffectSoundslider.value;
         BGMslider.value = PlayerPrefs.GetFloat("S_BGM");
         S_BGM.volume = BGMslider.value;
     }
 
-    public void SetBGMVolume(float volume)
+	private void Update()
+	{
+        if (SceneManager.GetActiveScene().name == "3.Game")
+        {
+            S_BGM.enabled = false;
+        }
+        else if (SceneManager.GetActiveScene().name != "3.Game")
+        {
+            if (!PlayerPrefs.HasKey("S_BGM") && !PlayerPrefs.HasKey("S_BtnClick"))
+            {
+                PlayerPrefs.SetFloat("S_BGM", 1.0f);
+                PlayerPrefs.SetFloat("S_BtnClick", 1.0f);
+            }
+            else
+            {
+                S_BGM.volume = PlayerPrefs.GetFloat("S_BGM");
+                S_BGM.enabled = true;
+            }
+        }
+    }
+	public void SetBGMVolume(float volume)
     {
         PlayerPrefs.SetFloat("S_BGM",volume);
         S_BGM.volume = volume;
