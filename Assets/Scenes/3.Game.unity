@@ -523,8 +523,8 @@ MonoBehaviour:
   nScore: 0
   nLife: 3
   nMaxScore: 0
-  IsOver: 0
-  IsPause: 0
+  isOver: 0
+  isPause: 0
 --- !u!4 &46498741
 Transform:
   m_ObjectHideFlags: 0
@@ -618,11 +618,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 286933238}
-        m_MethodName: InGameShowOption
-        m_Mode: 1
+        m_MethodName: ShowObject
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 934802502}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2946,11 +2946,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 286933238}
-        m_MethodName: InGameExitOption
-        m_Mode: 1
+        m_MethodName: OffObject
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 934802502}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

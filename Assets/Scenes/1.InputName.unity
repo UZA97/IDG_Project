@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usernameText: {fileID: 0}
-  mIsVaildName: 0
+  isVaildName: 0
 --- !u!4 &101651201
 Transform:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 524413306}
   - component: {fileID: 524413305}
   m_Layer: 0
-  m_Name: SceneData
+  m_Name: NetWorkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,8 +442,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4948e5dde4a75c46be918c5105d8019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  S_BGM: {fileID: 1703207596}
-  S_BtnClick: {fileID: 565929041}
   NetworkPanel: {fileID: 939779927}
 --- !u!4 &524413306
 Transform:
@@ -456,8 +454,6 @@ Transform:
   m_LocalPosition: {x: -0.029728647, y: -0.16222432, z: -0.040427424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1703207595}
-  - {fileID: 565929040}
   - {fileID: 1034933424}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -490,7 +486,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 524413306}
+  m_Father: {fileID: 1548481357}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &565929041
@@ -1144,7 +1140,7 @@ RectTransform:
   m_Children:
   - {fileID: 939779930}
   m_Father: {fileID: 524413306}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1731,7 +1727,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.029728647, y: -0.16222432, z: -0.040427424}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1703207595}
+  - {fileID: 565929040}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1960,7 +1958,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 524413306}
+  m_Father: {fileID: 1548481357}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1703207596

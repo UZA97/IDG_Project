@@ -17,20 +17,16 @@ public class Button : MonoBehaviour
 
     public void GameStart()
     {
-        SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("3.Game");
     }
     public void Restart()
     {
-        S2_SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("3.Game");
         GameManager._instance.isOver = false;
     }
 
     public void InputUserName()
     {
-        SoundManager._instance.S_BtnClick.Play();
-
         if(Input_UserName.text == "" || !nameCount) {
             Notificationtext.text = "이름이 비어있거나\n이름이 옳바르지 않아요!!";
             // Notificationtext.text = "There are\ncharacters unavailable.";
@@ -71,54 +67,35 @@ public class Button : MonoBehaviour
     {
         _obj.SetActive(false);
     }
-    public void ShowOption()
-    {
-        SoundManager._instance.S_BtnClick.Play();
-        OptionGroup.SetActive(true);
-    }
-    public void ExitOption()
-    {
-        SoundManager._instance.S_BtnClick.Play();
 
-        OptionGroup.SetActive(false);
-    }
     public void InGameShowOption()
     {
-        S2_SoundManager._instance.S_BtnClick.Play();
         GameManager._instance.isPause = true;
         GameManager._instance.ChickGroup.SetActive(false);
         OptionGroup.SetActive(true);
     }
     public void GameToMain()
     {
-        S2_SoundManager._instance.S_BtnClick.Play();
         SceneManager.LoadScene("2.Main");
-        //SceneData._instance.S_BGM.Play();
     }
     public void InGameExitOption()
     {
-        S2_SoundManager._instance.S_BtnClick.Play();
         GameManager._instance.isPause = false;
         GameManager._instance.ChickGroup.SetActive(true);
         OptionGroup.SetActive(false);
     }
     public void EndGame()
     {
-        SoundManager._instance.S_BtnClick.Play();
-
         Application.Quit();
     }
 
     public void ShowRank()
     {
         RankGroup.SetActive(true);
-        SoundManager._instance.S_BtnClick.Play();
-
     }
     public void RanktoMain()
     {
         RankGroup.SetActive(false);
-        SoundManager._instance.S_BtnClick.Play();
     }
     public void PushBtn()
     {
@@ -126,33 +103,14 @@ public class Button : MonoBehaviour
             switch(chickType)
             {
                 case ChickType.A:
-                //CheckChick("A");
                 CheckChick(ChickType.A);
                 break;
                 case ChickType.B:
-                //CheckChick("B");
                 CheckChick(ChickType.B);
                 break;
                 case ChickType.C:
-                //CheckChick("C");
                 CheckChick(ChickType.C);
                 break;
-            }
-        }
-    }
-    private void CheckChick(string chickname)
-    {
-        if (GameManager._instance.chick == null)
-            return;
-        if (!GameManager._instance.isPause)
-        {
-            if (GameManager._instance.chick.chickName == chickname) {
-                S2_SoundManager._instance.S_Chick.Play();
-                GameManager._instance.DestroyChick();
-            }
-            else {
-                S2_SoundManager._instance.S_Fail.Play();
-                GameManager._instance.Wrong();
             }
         }
     }
