@@ -61,7 +61,7 @@ public class Rank : MonoBehaviour
                 j++;
             }
             else if(i%3==1) {
-                RankText[i].text = " " + UserRankList[i].ToString();
+                RankText[i].text = UserRankList[i].ToString();
             }
             else if(i%3 ==2) {
                 RankText[i].text = "\t"+ UserRankList[i].ToString();

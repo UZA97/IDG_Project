@@ -66,6 +66,7 @@ public class Button : MonoBehaviour
     public void OffObject(GameObject _obj)
     {
         _obj.SetActive(false);
+
     }
 
     public void InGameShowOption()
@@ -89,14 +90,6 @@ public class Button : MonoBehaviour
         Application.Quit();
     }
 
-    public void ShowRank()
-    {
-        RankGroup.SetActive(true);
-    }
-    public void RanktoMain()
-    {
-        RankGroup.SetActive(false);
-    }
     public void PushBtn()
     {
         if(!GameManager._instance.isPause) {
@@ -122,12 +115,12 @@ public class Button : MonoBehaviour
         {
             if (GameManager._instance.chick.chickType == chickType)
             {
-                S2_SoundManager._instance.S_Chick.Play();
+                SoundManager._instance.ChickSound.Play();
                 GameManager._instance.DestroyChick();
             }
             else
             {
-                S2_SoundManager._instance.S_Fail.Play();
+                SoundManager._instance.failSound.Play();
                 GameManager._instance.Wrong();
             }
         }

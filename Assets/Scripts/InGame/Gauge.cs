@@ -45,8 +45,8 @@ public class Gauge : MonoBehaviour
     }
     IEnumerator FeverTime()
     {
-        S2_SoundManager._instance.S_BGM.Pause();
-        S2_SoundManager._instance.S_FeverBGM.Play();
+        SoundManager._instance.inGameBGM.Pause();
+        SoundManager._instance.feverBGM.Play();
         Feverpad.SetActive(true);
         ChickGroup.SetActive(false);
         IsFever = true;
@@ -54,12 +54,12 @@ public class Gauge : MonoBehaviour
         Feverpad.SetActive(false);
         ChickGroup.SetActive(true);
         IsFever = false;
-        S2_SoundManager._instance.S_FeverBGM.Stop();
-        S2_SoundManager._instance.S_BGM.Play();
+        SoundManager._instance.feverBGM.Stop();
+        SoundManager._instance.inGameBGM.Play();
     }
     public void FeverTouch()
     {
-        S2_SoundManager._instance.S_Fever.Play();
+        SoundManager._instance.feverSound.Play();
         animator.SetTrigger("Click");
         GameObject EffectObj = Instantiate(FeverEffectPrefab,FeverPos);
         ParticleSystem instantEffect = EffectObj.GetComponent<ParticleSystem>();
@@ -91,7 +91,7 @@ public class Gauge : MonoBehaviour
         if(!GameManager._instance.isOver && !GameManager._instance.isPause && !IsFever) {
             fDecrement += sec * Time.deltaTime;
             if (TimeBar.localScale.x <= 0) {
-                S2_SoundManager._instance.S_Fail.Play();
+                SoundManager._instance.failSound.Play();
                 GameManager._instance.Wrong();
                 TimeBar.localScale = new Vector3(1, 1, 1);        
                 fDecrement = 0.0f;

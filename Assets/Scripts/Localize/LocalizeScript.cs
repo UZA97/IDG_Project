@@ -8,18 +8,18 @@ public class LocalizeScript : MonoBehaviour
     void Start()
     {
         LocalizeChanged();
-        S.LocalizeChanged += LocalizeChanged;
+        languageSingleton.LocalizeChanged += LocalizeChanged;
     }
 
     void OnDestroy()
     {
-        S.LocalizeChanged -= LocalizeChanged;
+        languageSingleton.LocalizeChanged -= LocalizeChanged;
     }
 
     string Localize(string key)
     {
-        int keyIndex = S.Langs[0].value.FindIndex(x => x.ToLower() == key.ToLower());
-        return S.Langs[S.curLangIndex].value[keyIndex];
+        int keyIndex = languageSingleton.Langs[0].value.FindIndex(x => x.ToLower() == key.ToLower());
+        return languageSingleton.Langs[languageSingleton.curLangIndex].value[keyIndex];
     }
 
     void LocalizeChanged()

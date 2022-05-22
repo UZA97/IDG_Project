@@ -18,12 +18,12 @@ public class LanguageSingleton : MonoBehaviour
     public int curLangIndex;
     public List<Lang> Langs;
 
-    public static LanguageSingleton S;
+    public static LanguageSingleton languageSingleton;
     void Awake()
     {
-        if (null == S)
+        if (null == languageSingleton)
         {
-            S = this;
+            languageSingleton = this;
             DontDestroyOnLoad(this);
         }
         else Destroy(this);
@@ -36,7 +36,6 @@ public class LanguageSingleton : MonoBehaviour
         int systemIndex = Langs.FindIndex(x => x.lang.ToLower() == Application.systemLanguage.ToString().ToLower());
         if (systemIndex == -1)
             systemIndex = 0;
-        //int index = langIndex == -1 ? systemIndex : langIndex;
         if (langIndex == -1)
             langIndex = systemIndex;;
 		SetLangIndex(langIndex);

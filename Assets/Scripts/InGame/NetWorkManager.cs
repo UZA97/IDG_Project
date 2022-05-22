@@ -7,6 +7,7 @@ public class NetWorkManager : MonoBehaviour
     public GameObject NetworkPanel;
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
 		Application.targetFrameRate = 60;
 
         DontDestroyOnLoad(gameObject);

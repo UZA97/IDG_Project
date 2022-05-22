@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
-        S2_SoundManager._instance.S_GameOver.Play();
+        SoundManager._instance.gameOverSound.Play();
         isOver = true;
         endGroup.SetActive(true);
         tsubScore.text = ": "+tScore.text;

@@ -5,39 +5,47 @@ using UnityEngine.SceneManagement;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager _instance;
-    public AudioSource S_BtnClick;
+    [Header ("BGM")]
     [SerializeField]
-    private AudioSource S_BGM;
+    private AudioSource BGM;
+    public AudioSource inGameBGM;
+    public AudioSource feverBGM;
+
+    [Header ("Sound")]
+    public AudioSource btnClick;
+    public AudioSource ChickSound;
+    public AudioSource feverSound;
+    public AudioSource failSound;
+    public AudioSource gameOverSound;
     [SerializeField]
-    private Slider BGMslider;
-    public Slider EffectSoundslider;
+    private Slider BGMSlider;
+    public Slider effectSoundSlider;
     [SerializeField]
     private Image BGMImage;
     [SerializeField]
-    private Image EffectImage;
+    private Image effectImage;
     [SerializeField]
     private Image BGMXImage;
     [SerializeField]
-    private Image EffectXImage;
-    private void Awake()
+    private Image effectXImage;
+    private void Start()
     {
-        if(_instance == null) {
+        if (_instance == null)
+        {
             _instance = this;
         }
-        DontDestroyOnLoad(gameObject);
-        EffectSoundslider.value = PlayerPrefs.GetFloat("S_BtnClick");
-        S_BtnClick.volume = EffectSoundslider.value;
-        BGMslider.value = PlayerPrefs.GetFloat("S_BGM");
-        S_BGM.volume = BGMslider.value;
+        //DontDestroyOnLoad(gameObject);
+        if (effectSoundSlider != null)
+            effectSoundSlider.value = PlayerPrefs.GetFloat("S_BtnClick");
+
+        if(BGMSlider != null)
+            BGMSlider.value = PlayerPrefs.GetFloat("S_BGM");
+
     }
 
 	private void Update()
 	{
-        if (SceneManager.GetActiveScene().name == "3.Game")
-        {
-            S_BGM.enabled = false;
-        }
-        else if (SceneManager.GetActiveScene().name != "3.Game")
+        if (SceneManager.GetActiveScene().name != "3.Game")
         {
             if (!PlayerPrefs.HasKey("S_BGM") && !PlayerPrefs.HasKey("S_BtnClick"))
             {
@@ -46,16 +54,18 @@ public class SoundManager : MonoBehaviour
             }
             else
             {
-                S_BGM.volume = PlayerPrefs.GetFloat("S_BGM");
-                S_BGM.enabled = true;
+                BGM.volume = PlayerPrefs.GetFloat("S_BGM");
             }
         }
     }
+
 	public void SetBGMVolume(float volume)
     {
         PlayerPrefs.SetFloat("S_BGM",volume);
-        S_BGM.volume = volume;
-        if(BGMslider.value == 0) {
+        BGM.volume = volume;
+        feverBGM.volume = volume;
+        inGameBGM.volume = volume;
+        if(BGMSlider.value == 0) {
             BGMImage.enabled = false;
             BGMXImage.enabled = true;
         }
@@ -67,14 +77,18 @@ public class SoundManager : MonoBehaviour
     public void SetEffectVolume(float volume)
     {
         PlayerPrefs.SetFloat("S_BtnClick",volume);
-        S_BtnClick.volume = volume;
-        if(EffectSoundslider.value == 0) {
-            EffectImage.enabled = false;
-            EffectXImage.enabled = true;
+        btnClick.volume = volume;
+        ChickSound.volume = volume;
+        failSound.volume = volume;
+        feverSound.volume = volume;
+        gameOverSound.volume = volume;
+        if(effectSoundSlider.value == 0) {
+            effectImage.enabled = false;
+            effectXImage.enabled = true;
         }
         else {
-            EffectImage.enabled = true;
-            EffectXImage.enabled = false;
+            effectImage.enabled = true;
+            effectXImage.enabled = false;
         }
     }
 }

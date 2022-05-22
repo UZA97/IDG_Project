@@ -96,6 +96,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   chickName: C
   chickanimator: {fileID: 5533162600897272432}
+  chickType: 2
 --- !u!95 &5533162600897272432
 Animator:
   serializedVersion: 3
