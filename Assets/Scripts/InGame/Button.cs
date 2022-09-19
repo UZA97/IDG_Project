@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+//using GoogleMobileAds.Api;
 public enum ChickType{A,B,C}
 public class Button : MonoBehaviour
 {
@@ -125,4 +126,32 @@ public class Button : MonoBehaviour
             }
         }
     }
+
+    //#region 리워드 광고
+    //const string rewardTestID = "ca-app-pub-3940256099942544/5224354917";
+    //const string rewardID = "";
+    //RewardedAd rewardAd;
+
+
+    //void LoadRewardAd()
+    //{
+    //    rewardAd = new RewardedAd(isTestMode ? rewardTestID : rewardID);
+    //    rewardAd.LoadAd(GetAdRequest());
+    //    rewardAd.OnUserEarnedReward += (sender, e) =>
+    //    {
+    //        LogText.text = "리워드 광고 성공";
+    //    };
+    //}
+
+    //public void ShowRewardAd()
+    //{
+    //    rewardAd.Show();
+    //    LoadRewardAd();
+    //}
+    //#endregion
+    //AdRequest GetAdRequest()
+    //{
+    //    return new AdRequest.Builder().AddTestDevice("1DF7B7CC05014E8").Build();
+    //}
+
 }
